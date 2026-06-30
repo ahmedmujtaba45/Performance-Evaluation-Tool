@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surveys · EvaluAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="surveys.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <span class="brand-mark">AI</span>
+        <span class="brand-name">EvaluAI</span>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li>
+          <button class="nav-item" data-module="overview" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+            <span>Overview</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="employees" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Employees</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="manage-employees" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <span>Manage Employees</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="scoring" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Scoring</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="reports" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span>Reports</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="announcements" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.2-3"/></svg>
+            <span>Announcements</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item is-active" data-module="surveys" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Surveys</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>EvaluAI · v1.0</span>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="topbar-title">Surveys</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="popover-wrap">
+          <button class="icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge" id="notifBadge">8</span>
+          </button>
+          <div class="popover" id="notifPopover">
+            <div class="popover-header">
+              <span>Notifications</span>
+              <button class="text-btn" id="markAllRead">Mark all read</button>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        </div>
+
+        <span class="topbar-divider"></span>
+
+        <div class="popover-wrap">
+          <button class="user-menu-btn" id="userBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar">JR</span>
+            <span class="user-name">James Rodriguez</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="popover popover-right" id="userPopover">
+            <button class="popover-item" type="button">Profile settings</button>
+            <button class="popover-item" type="button">Account &amp; security</button>
+            <hr class="popover-sep" />
+            <button class="popover-item is-danger" type="button">Log out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="toast" id="toast"></div>
+
+    <main class="content">
+
+      <section class="page-heading page-heading--row">
+        <div>
+          <h2>Surveys</h2>
+          <p>Collect employee feedback and track participation across the organization</p>
+        </div>
+        <button class="btn btn--primary" id="newSurveyBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Survey
+        </button>
+      </section>
+
+      <!-- ===== Stat cards ===== -->
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Active Surveys</span>
+            <span class="stat-icon stat-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" id="statActive">0</div>
+          <p class="stat-sub" id="statActiveSub">1 pending review</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Pending Review</span>
+            <span class="stat-icon stat-icon--amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" id="statPending">0</div>
+          <p class="stat-sub">Awaiting HR review</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Avg Response Rate</span>
+            <span class="stat-icon stat-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" id="statResponseRate">0%</div>
+          <p class="stat-sub">Across active surveys</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Total Responses</span>
+            <span class="stat-icon stat-icon--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" id="statResponses">0</div>
+          <p class="stat-sub">All-time, all surveys</p>
+        </article>
+      </section>
+
+      <!-- ===== Toolbar ===== -->
+      <section class="toolbar">
+        <div class="search-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="Search surveys..." aria-label="Search surveys" />
+        </div>
+        <div class="toolbar-filters">
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="all">All Statuses</option>
+            <option value="Active">Active</option>
+            <option value="Pending Review">Pending Review</option>
+            <option value="Closed">Closed</option>
+            <option value="Draft">Draft</option>
+          </select>
+          <select id="audienceFilter" aria-label="Filter by audience">
+            <option value="all">All Audiences</option>
+            <option value="All Employees">All Employees</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Finance">Finance</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="result-count" id="resultCount"></p>
+
+      <!-- ===== Survey list ===== -->
+      <section class="survey-list" id="surveyList"></section>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <p>No surveys match your filters</p>
+        <button class="text-btn" id="clearFiltersBtn" type="button">Clear filters</button>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===== New / Edit Survey Modal ===== -->
+<div class="modal-backdrop" id="surveyModalBackdrop">
+  <div class="modal modal--lg" role="dialog" aria-modal="true" aria-labelledby="surveyModalTitle">
+    <div class="modal-head">
+      <span class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </span>
+      <h3 id="surveyModalTitle">New Survey</h3>
+      <button class="modal-close" id="surveyModalClose" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <form class="modal-form" id="surveyForm" novalidate>
+      <div class="field">
+        <label for="fieldTitle">Survey title</label>
+        <input type="text" id="fieldTitle" placeholder="e.g., Q2 Team Pulse" autocomplete="off" />
+        <span class="field-error" id="errorTitle"></span>
+      </div>
+
+      <div class="field">
+        <label for="fieldDescription">Description</label>
+        <textarea id="fieldDescription" rows="2" placeholder="What is this survey for?"></textarea>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="fieldAudience">Audience</label>
+          <select id="fieldAudience">
+            <option value="All Employees">All Employees</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Finance">Finance</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fieldDueDate">Closes on</label>
+          <input type="date" id="fieldDueDate" />
+          <span class="field-error" id="errorDueDate"></span>
+        </div>
+      </div>
+
+      <div class="questions-section">
+        <div class="questions-head">
+          <label>Questions</label>
+          <button type="button" class="text-btn" id="addQuestionBtn">+ Add question</button>
+        </div>
+        <div id="questionList" class="question-list"></div>
+        <span class="field-error" id="errorQuestions"></span>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn btn--primary" id="surveySubmitBtn" data-action="publish">Publish Survey</button>
+        <button type="button" class="btn btn--ghost" id="surveyDraftBtn">Save as Draft</button>
+        <button type="button" class="btn btn--ghost" id="surveyCancelBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===== Results Modal ===== -->
+<div class="modal-backdrop" id="resultsModalBackdrop">
+  <div class="modal modal--lg" role="dialog" aria-modal="true" aria-labelledby="resultsModalTitle">
+    <div class="modal-head">
+      <span class="modal-icon modal-icon--green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </span>
+      <div class="modal-head-text">
+        <h3 id="resultsModalTitle">Survey Results</h3>
+        <p id="resultsModalSub"></p>
+      </div>
+      <button class="modal-close" id="resultsModalClose" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="resultsBody" class="results-body"></div>
+  </div>
+</div>
+
+<!-- ===== Delete Confirm Modal ===== -->
+<div class="modal-backdrop" id="deleteModalBackdrop">
+  <div class="modal modal--sm" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal-head">
+      <span class="modal-icon modal-icon--danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </span>
+      <h3 id="deleteModalTitle">Delete survey?</h3>
+      <button class="modal-close" id="deleteModalClose" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <p class="modal-text" id="deleteModalText">This will permanently remove this survey and its responses. This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn--danger" id="deleteConfirmBtn">Delete</button>
+      <button type="button" class="btn btn--ghost" id="deleteCancelBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="surveys.js"></script>
+</body>
+</html>

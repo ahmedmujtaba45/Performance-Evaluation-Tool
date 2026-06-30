@@ -1,0 +1,1124 @@
+
+/* -------------------------------------------------------
+   1. RESET & CSS CUSTOM PROPERTIES
+------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Sidebar ─────────────────────────────────────── */
+  --sb-bg:          #111827;
+  --sb-hover:       rgba(255, 255, 255, 0.06);
+  --sb-active:      rgba(255, 255, 255, 0.10);
+  --sb-text:        #9ca3af;
+  --sb-text-active: #ffffff;
+  --sb-width:       258px;
+
+  /* ── Layout ──────────────────────────────────────── */
+  --header-h:       62px;
+  --main-bg:        #f3f4f6;
+  --card-bg:        #ffffff;
+  --card-radius:    12px;
+  --card-shadow:    0 1px 3px rgba(0, 0, 0, 0.07),
+                    0 1px 2px rgba(0, 0, 0, 0.04);
+  --border:         #e5e7eb;
+
+  /* ── Brand colours ───────────────────────────────── */
+  --blue:           #3b82f6;
+  --blue-bg:        #eff6ff;
+  --blue-dark:      #1d4ed8;
+  --green:          #22c55e;
+  --green-bg:       #f0fdf4;
+  --green-dark:     #15803d;
+  --purple:         #7c3aed;
+  --purple-bg:      #f5f3ff;
+  --amber:          #f59e0b;
+  --amber-bg:       #fffbeb;
+  --red:            #ef4444;
+  --red-bg:         #fee2e2;
+  --dark-icon:      #374151;
+  --dark-icon-bg:   #f9fafb;
+
+  /* ── Text ────────────────────────────────────────── */
+  --t1:             #111827;
+  --t2:             #6b7280;
+  --t3:             #9ca3af;
+
+  /* ── Typography ──────────────────────────────────── */
+  --font:           'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--main-bg);
+  color: var(--t1);
+  display: flex;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* -------------------------------------------------------
+   2. SIDEBAR
+------------------------------------------------------- */
+.sidebar {
+  width: var(--sb-width);
+  background: var(--sb-bg);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+/* Logo row */
+.sb-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 22px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.sb-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sb-logo-icon svg { width: 20px; height: 20px; fill: #fff; }
+
+.sb-logo-text {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+/* Navigation list */
+.sb-nav { padding: 14px 10px; flex: 1; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 13px;
+  border-radius: 8px;
+  color: var(--sb-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: background 0.12s, color 0.12s;
+}
+.nav-item:hover  { background: var(--sb-hover);  color: #e5e7eb; }
+.nav-item.active { background: var(--sb-active); color: var(--sb-text-active); }
+.nav-item svg    { width: 17px; height: 17px; flex-shrink: 0; stroke-width: 2; }
+
+/* Sidebar footer */
+.sb-footer {
+  padding: 12px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+.sb-footer .nav-item { color: #6b7280; }
+
+/* -------------------------------------------------------
+   3. MAIN WRAPPER
+------------------------------------------------------- */
+.main-wrap {
+  margin-left: var(--sb-width);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------
+   4. TOP HEADER BAR
+------------------------------------------------------- */
+.header {
+  height: var(--header-h);
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: -0.1px;
+}
+
+.header-right { display: flex; align-items: center; gap: 10px; }
+
+/* ─ Notification bell ────────────────────────────── */
+.notif-wrap { position: relative; }
+
+.notif-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--t2);
+  transition: background 0.12s;
+}
+.notif-btn:hover { background: var(--main-bg); }
+.notif-btn svg   { width: 19px; height: 19px; }
+
+.notif-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 17px;
+  height: 17px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  line-height: 1;
+  transition: opacity 0.3s;
+}
+
+/* Notification dropdown */
+.notif-dropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 330px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border);
+  z-index: 300;
+  display: none;
+  overflow: hidden;
+}
+.notif-dropdown.open { display: block; }
+
+.notif-dd-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.notif-dd-title     { font-size: 13.5px; font-weight: 600; color: var(--t1); }
+.notif-mark-read    { font-size: 12px; color: var(--blue); font-weight: 500; cursor: pointer; }
+.notif-mark-read:hover { text-decoration: underline; }
+
+.notif-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.notif-list::-webkit-scrollbar       { width: 4px; }
+.notif-list::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 2px; }
+
+.notif-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 11px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.notif-row:last-child { border-bottom: none; }
+.notif-row:hover      { background: #f9fafb; }
+
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--blue);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+.notif-dot.read { opacity: 0; }
+
+.notif-msg  { font-size: 12.5px; color: var(--t1); line-height: 1.45; }
+.notif-time { font-size: 11px;   color: var(--t3); margin-top: 2px; }
+
+/* ─ User pill + dropdown ─────────────────────────── */
+.user-pill-wrap { position: relative; }
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.user-pill:hover { background: var(--main-bg); }
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.user-name { font-size: 13.5px; font-weight: 500; color: var(--t1); }
+.chevron svg { width: 13px; height: 13px; stroke: var(--t3); }
+
+.user-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border);
+  z-index: 300;
+  display: none;
+  overflow: hidden;
+}
+.user-dropdown.open { display: block; }
+
+.ud-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--t1);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.ud-row:hover      { background: #f9fafb; }
+.ud-row svg        { width: 15px; height: 15px; stroke: var(--t2); }
+.ud-sep            { border-top: 1px solid var(--border); }
+.ud-row.danger     { color: var(--red); }
+.ud-row.danger svg { stroke: var(--red); }
+
+/* -------------------------------------------------------
+   5. SCROLLABLE CONTENT AREA
+------------------------------------------------------- */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 26px 28px;
+}
+.content::-webkit-scrollbar       { width: 5px; }
+.content::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+/* Page heading (used on every module) */
+.page-heading  { margin-bottom: 22px; }
+.page-title    { font-size: 25px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+.page-sub      { font-size: 13.5px; color: var(--t2); }
+
+/* -------------------------------------------------------
+   6. SHARED COMPONENTS
+------------------------------------------------------- */
+
+/* Status badges (used on KPI rows, eval cards, etc.) */
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.status-badge.below   { background: #fef3c7; color: #92400e; }
+.status-badge.on      { background: #d1fae5; color: #065f46; }
+.status-badge.exceeds { background: #dbeafe; color: #1e40af; }
+.status-badge.risk    { background: var(--red-bg); color: #991b1b; }
+.status-badge.pending { background: #f3f4f6; color: var(--t2); }
+
+/* Small separator dot between inline items */
+.sep-dot {
+  width: 3px;
+  height: 3px;
+  background: #d1d5db;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Quarter / label pill badge */
+.q-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--blue-bg);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.q-badge svg { width: 11px; height: 11px; }
+
+/* -------------------------------------------------------
+   7. RESPONSIVE
+------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .stat-grid,
+  .score-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  :root { --sb-width: 0px; }
+  .sidebar          { transform: translateX(-100%); }
+  .header,
+  .content          { padding-left: 16px; padding-right: 16px; }
+  .stat-grid,
+  .score-grid       { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* =======================================================
+   PAGE-SPECIFIC STYLES
+======================================================= */
+
+     6.  Survey-taking overlay
+     7.  Overlay top-bar & progress strip
+     8.  Question container
+     9.  Answer type: Rating (stars)
+    10.  Answer type: Likert scale
+    11.  Answer type: NPS (0-10)
+    12.  Answer type: Radio options
+    13.  Answer type: Checkbox options
+    14.  Answer type: Textarea
+    15.  Overlay navigation footer
+    16.  Completion / Thank-you screen
+    17.  Auto-save indicator
+    18.  Empty state
+    19.  Responsive
+======================================================= */
+
+/* -------------------------------------------------------
+   1. SUMMARY STAT CARDS
+------------------------------------------------------- */
+.sv-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.sv-stat {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  padding: 15px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sv-stat-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sv-stat-icon svg    { width: 18px; height: 18px; }
+.sv-stat-icon.blue   { background: var(--blue-bg);   color: var(--blue);   }
+.sv-stat-icon.amber  { background: var(--amber-bg);  color: var(--amber);  }
+.sv-stat-icon.green  { background: var(--green-bg);  color: var(--green);  }
+.sv-stat-icon.purple { background: var(--purple-bg); color: var(--purple); }
+
+.sv-stat-body   { min-width: 0; }
+.sv-stat-val    { font-size: 22px; font-weight: 700; letter-spacing: -.5px; color: var(--t1); line-height: 1; }
+.sv-stat-label  { font-size: 12px; color: var(--t2); margin-top: 3px; }
+
+/* -------------------------------------------------------
+   2. FILTER TABS
+------------------------------------------------------- */
+.sv-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.sv-tab {
+  padding: 7px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t2);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+  user-select: none;
+  white-space: nowrap;
+}
+.sv-tab:hover  { background: #e9eaf0; color: var(--t1); }
+.sv-tab.active { background: var(--t1); color: #fff; border-color: var(--t1); }
+
+.sv-tab-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 99px;
+  font-size: 10px; font-weight: 700;
+  margin-left: 4px;
+  background: rgba(255,255,255,.2);
+}
+.sv-tab:not(.active) .sv-tab-badge {
+  background: var(--main-bg);
+  color: var(--t3);
+  border: 1px solid var(--border);
+}
+
+/* -------------------------------------------------------
+   3. SURVEY LIST & CARDS
+------------------------------------------------------- */
+.sv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.sv-card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  box-shadow: var(--card-shadow);
+  padding: 20px 22px;
+  transition: box-shadow .15s, transform .1s;
+}
+.sv-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,.09);
+  transform: translateY(-1px);
+}
+
+/* Card top row */
+.sv-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.sv-status-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 99px;
+  text-transform: uppercase; letter-spacing: .3px;
+}
+.sv-status-badge svg { width: 10px; height: 10px; }
+.sv-status-badge.pending    { background: var(--blue-bg);   color: #1e40af; }
+.sv-status-badge.inprogress { background: var(--amber-bg);  color: #92400e; }
+.sv-status-badge.completed  { background: var(--green-bg);  color: #065f46; }
+.sv-status-badge.expired    { background: var(--main-bg);   color: var(--t3); border: 1px solid var(--border); }
+
+.sv-cat-badge {
+  display: inline-flex; align-items: center;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: var(--purple-bg); color: var(--purple);
+}
+
+.sv-anon-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 500;
+  color: var(--t3);
+  background: var(--main-bg);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 3px 9px;
+}
+.sv-anon-badge svg { width: 10px; height: 10px; }
+
+.sv-due-date {
+  margin-left: auto;
+  font-size: 12px; color: var(--t3);
+  white-space: nowrap;
+}
+.sv-due-date.urgent { color: var(--red); font-weight: 600; }
+
+/* Card body */
+.sv-card-title {
+  font-size: 15.5px; font-weight: 700;
+  color: var(--t1);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+.sv-card.completed .sv-card-title,
+.sv-card.expired   .sv-card-title { color: var(--t2); }
+
+.sv-card-desc {
+  font-size: 13px; color: var(--t2);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card meta row */
+.sv-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.sv-meta-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 12px; color: var(--t2);
+}
+.sv-meta-item svg { width: 13px; height: 13px; color: var(--t3); }
+
+/* -------------------------------------------------------
+   4. CARD STATUS VARIANTS  (left-border colours)
+------------------------------------------------------- */
+.sv-card.pending    { border-left-color: var(--blue);   }
+.sv-card.inprogress { border-left-color: var(--amber);  }
+.sv-card.completed  { border-left-color: var(--green);  }
+.sv-card.expired    { border-left-color: #d1d5db; }
+
+/* -------------------------------------------------------
+   5. CARD PROGRESS BAR
+------------------------------------------------------- */
+.sv-card-progress {
+  margin-bottom: 14px;
+}
+
+.sv-prog-labels {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 5px;
+}
+.sv-prog-label { font-size: 11.5px; color: var(--t2); font-weight: 500; }
+.sv-prog-pct   { font-size: 11.5px; color: var(--t1); font-weight: 700; }
+
+.sv-prog-track {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.sv-prog-fill {
+  height: 100%; border-radius: 99px;
+  width: 0;
+  transition: width .7s cubic-bezier(.4,0,.2,1);
+}
+.sv-prog-fill.blue   { background: var(--blue);  }
+.sv-prog-fill.amber  { background: var(--amber); }
+.sv-prog-fill.green  { background: var(--green); }
+.sv-prog-fill.gray   { background: #9ca3af; }
+
+/* Card footer */
+.sv-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sv-card-submeta {
+  font-size: 12px; color: var(--t3);
+}
+
+.sv-action-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  height: 36px; padding: 0 18px;
+  border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  transition: background .12s, box-shadow .12s;
+  white-space: nowrap;
+}
+.sv-action-btn svg { width: 14px; height: 14px; }
+
+.sv-action-btn.take     { background: var(--t1); color: #fff; }
+.sv-action-btn.take:hover { background: #374151; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+
+.sv-action-btn.cont     { background: var(--amber); color: #fff; }
+.sv-action-btn.cont:hover { background: #d97706; }
+
+.sv-action-btn.view     { background: var(--green-bg); color: var(--green-dark); border: 1px solid #bbf7d0; }
+.sv-action-btn.view:hover { background: #d1fae5; }
+
+.sv-action-btn.expired-btn { background: var(--main-bg); color: var(--t3); border: 1px solid var(--border); cursor: not-allowed; }
+
+/* -------------------------------------------------------
+   6. SURVEY-TAKING OVERLAY (full viewport)
+------------------------------------------------------- */
+.sv-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--card-bg);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform .38s cubic-bezier(.4, 0, .2, 1);
+}
+.sv-overlay.open { transform: translateY(0); }
+
+/* -------------------------------------------------------
+   7. OVERLAY TOP-BAR & PROGRESS STRIP
+------------------------------------------------------- */
+.sv-ov-topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 28px;
+  height: 58px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sv-ov-back {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--t2);
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font);
+  transition: color .12s;
+  padding: 0; white-space: nowrap;
+}
+.sv-ov-back:hover { color: var(--t1); }
+.sv-ov-back svg { width: 15px; height: 15px; }
+
+.sv-ov-title {
+  font-size: 14.5px; font-weight: 700;
+  color: var(--t1); letter-spacing: -.1px;
+  flex: 1; text-align: center;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.sv-ov-qcount {
+  font-size: 13px; color: var(--t2); font-weight: 500;
+  white-space: nowrap;
+}
+
+.sv-ov-progress-strip {
+  height: 4px;
+  background: var(--main-bg);
+  flex-shrink: 0;
+}
+.sv-ov-progress-fill {
+  height: 100%;
+  background: var(--blue);
+  transition: width .4s ease;
+  width: 0%;
+}
+
+/* -------------------------------------------------------
+   8. QUESTION CONTAINER
+------------------------------------------------------- */
+.sv-ov-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 24px;
+}
+.sv-ov-body::-webkit-scrollbar { width: 5px; }
+.sv-ov-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+.sv-q-wrap {
+  width: 100%;
+  max-width: 640px;
+}
+
+.sv-q-num {
+  font-size: 12px; color: var(--t3); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .6px;
+  margin-bottom: 10px;
+}
+
+.sv-q-text {
+  font-size: 20px; font-weight: 700;
+  color: var(--t1); line-height: 1.4;
+  letter-spacing: -.2px;
+  margin-bottom: 8px;
+}
+
+.sv-q-hint {
+  font-size: 13px; color: var(--t2);
+  margin-bottom: 28px; line-height: 1.5;
+}
+
+/* -------------------------------------------------------
+   9. ANSWER TYPE: RATING (1-5 numbered)
+------------------------------------------------------- */
+.sv-rating-row {
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sv-rating-btn {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--main-bg);
+  font-size: 18px; font-weight: 700;
+  color: var(--t2);
+  cursor: pointer; font-family: var(--font);
+  transition: all .12s;
+  display: flex; align-items: center; justify-content: center;
+}
+.sv-rating-btn:hover  { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
+.sv-rating-btn.active { border-color: var(--blue); background: var(--blue); color: #fff; box-shadow: 0 3px 10px rgba(59,130,246,.3); }
+
+.sv-rating-labels {
+  display: flex; justify-content: space-between;
+  margin-top: 8px;
+  font-size: 11.5px; color: var(--t3);
+}
+
+/* -------------------------------------------------------
+   10. ANSWER TYPE: LIKERT SCALE
+------------------------------------------------------- */
+.sv-scale-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sv-scale-option {
+  display: flex; align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+  background: var(--card-bg);
+}
+.sv-scale-option:hover  { border-color: var(--blue); background: var(--blue-bg); }
+.sv-scale-option.active { border-color: var(--blue); background: var(--blue-bg); }
+
+.sv-scale-radio {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: border-color .12s;
+}
+.sv-scale-option.active .sv-scale-radio {
+  border-color: var(--blue);
+}
+.sv-scale-inner {
+  width: 8px; height: 8px;
+  border-radius: 50%; background: var(--blue);
+  opacity: 0; transform: scale(0);
+  transition: opacity .12s, transform .12s;
+}
+.sv-scale-option.active .sv-scale-inner { opacity: 1; transform: scale(1); }
+
+.sv-scale-text {
+  font-size: 14px; color: var(--t1); font-weight: 500;
+}
+.sv-scale-option.active .sv-scale-text { color: var(--blue-dark); font-weight: 600; }
+
+/* -------------------------------------------------------
+   11. ANSWER TYPE: NPS (0-10)
+------------------------------------------------------- */
+.sv-nps-wrap {
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.sv-nps-row {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+
+.sv-nps-btn {
+  width: 46px; height: 46px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--main-bg);
+  font-size: 15px; font-weight: 700;
+  color: var(--t2);
+  cursor: pointer; font-family: var(--font);
+  transition: all .12s;
+  display: flex; align-items: center; justify-content: center;
+}
+.sv-nps-btn:hover  { border-color: var(--blue); color: var(--blue); }
+.sv-nps-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+.sv-nps-labels {
+  display: flex; justify-content: space-between;
+  font-size: 11.5px; color: var(--t3);
+}
+
+/* -------------------------------------------------------
+   12. ANSWER TYPE: RADIO OPTIONS
+------------------------------------------------------- */
+.sv-radio-wrap { display: flex; flex-direction: column; gap: 10px; }
+
+.sv-radio-option {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+  background: var(--card-bg);
+}
+.sv-radio-option:hover  { border-color: var(--blue); background: var(--blue-bg); }
+.sv-radio-option.active { border-color: var(--blue); background: var(--blue-bg); }
+
+.sv-radio-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: border-color .12s;
+}
+.sv-radio-option.active .sv-radio-dot  { border-color: var(--blue); }
+
+.sv-radio-fill {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--blue); opacity: 0; transform: scale(0);
+  transition: opacity .12s, transform .12s;
+}
+.sv-radio-option.active .sv-radio-fill { opacity: 1; transform: scale(1); }
+
+.sv-radio-label { font-size: 14px; color: var(--t1); font-weight: 500; }
+.sv-radio-option.active .sv-radio-label { color: var(--blue-dark); font-weight: 600; }
+
+/* -------------------------------------------------------
+   13. ANSWER TYPE: CHECKBOX (multi-select)
+------------------------------------------------------- */
+.sv-check-wrap { display: flex; flex-direction: column; gap: 10px; }
+
+.sv-check-option {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+  background: var(--card-bg);
+}
+.sv-check-option:hover  { border-color: var(--blue); background: var(--blue-bg); }
+.sv-check-option.active { border-color: var(--blue); background: var(--blue-bg); }
+
+.sv-check-box {
+  width: 18px; height: 18px; border-radius: 5px;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background .12s, border-color .12s;
+}
+.sv-check-option.active .sv-check-box {
+  background: var(--blue); border-color: var(--blue);
+}
+.sv-check-box svg {
+  width: 10px; height: 10px; stroke: #fff;
+  opacity: 0; transform: scale(0);
+  transition: opacity .12s, transform .12s;
+}
+.sv-check-option.active .sv-check-box svg { opacity: 1; transform: scale(1); }
+
+.sv-check-label { font-size: 14px; color: var(--t1); font-weight: 500; }
+.sv-check-option.active .sv-check-label { color: var(--blue-dark); font-weight: 600; }
+
+/* -------------------------------------------------------
+   14. ANSWER TYPE: TEXTAREA
+------------------------------------------------------- */
+.sv-textarea-wrap { display: flex; flex-direction: column; gap: 6px; }
+
+.sv-textarea {
+  width: 100%;
+  min-height: 130px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  font-size: 14px; font-family: var(--font);
+  color: var(--t1); line-height: 1.6;
+  resize: vertical; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  background: var(--card-bg);
+}
+.sv-textarea::placeholder { color: var(--t3); }
+.sv-textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.1);
+}
+
+.sv-textarea-hint {
+  font-size: 11.5px; color: var(--t3);
+  text-align: right;
+}
+
+/* -------------------------------------------------------
+   15. OVERLAY NAVIGATION FOOTER
+------------------------------------------------------- */
+.sv-ov-footer {
+  border-top: 1px solid var(--border);
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+}
+
+.sv-nav-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  height: 40px; padding: 0 20px;
+  border-radius: 9px;
+  font-size: 13.5px; font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--card-bg); color: var(--t1);
+  transition: background .12s, border-color .12s;
+}
+.sv-nav-btn:hover  { background: var(--main-bg); }
+.sv-nav-btn:disabled { opacity: .4; cursor: not-allowed; }
+.sv-nav-btn svg    { width: 15px; height: 15px; }
+
+.sv-nav-btn.primary {
+  background: var(--blue); color: #fff;
+  border-color: var(--blue);
+  box-shadow: 0 2px 8px rgba(59,130,246,.25);
+}
+.sv-nav-btn.primary:hover  { background: var(--blue-dark); }
+.sv-nav-btn.submit {
+  background: var(--green); color: #fff;
+  border-color: var(--green);
+  box-shadow: 0 2px 8px rgba(34,197,94,.25);
+}
+.sv-nav-btn.submit:hover { background: var(--green-dark); }
+
+.sv-autosave {
+  font-size: 11.5px; color: var(--t3);
+  display: flex; align-items: center; gap: 5px;
+}
+.sv-autosave svg { width: 12px; height: 12px; }
+.sv-autosave.saving { color: var(--amber); }
+.sv-autosave.saved  { color: var(--green); }
+
+/* -------------------------------------------------------
+   16. COMPLETION / THANK-YOU SCREEN
+------------------------------------------------------- */
+.sv-complete-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+  flex: 1;
+}
+.sv-complete-screen.show { display: flex; }
+
+.sv-complete-icon {
+  width: 72px; height: 72px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 22px;
+  animation: sv-pop .4s cubic-bezier(.34,1.56,.64,1) both;
+}
+.sv-complete-icon svg { width: 36px; height: 36px; stroke: var(--green); }
+
+@keyframes sv-pop {
+  from { transform: scale(.4); opacity: 0; }
+  to   { transform: scale(1);  opacity: 1; }
+}
+
+.sv-complete-title {
+  font-size: 24px; font-weight: 800; letter-spacing: -.5px;
+  color: var(--t1); margin-bottom: 10px;
+}
+.sv-complete-sub {
+  font-size: 14.5px; color: var(--t2); line-height: 1.6;
+  max-width: 420px; margin-bottom: 30px;
+}
+
+.sv-complete-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 42px; padding: 0 24px;
+  border-radius: 9px;
+  background: var(--t1); color: #fff;
+  font-size: 14px; font-weight: 600;
+  font-family: var(--font); cursor: pointer;
+  border: none; transition: background .12s;
+}
+.sv-complete-btn:hover { background: #374151; }
+
+/* -------------------------------------------------------
+   17. AUTO-SAVE INDICATOR (inside overlay footer)
+------------------------------------------------------- */
+/* (styles included in section 15 above) */
+
+/* -------------------------------------------------------
+   18. EMPTY STATE
+------------------------------------------------------- */
+.sv-empty {
+  text-align: center; padding: 52px 20px;
+  color: var(--t3); display: none;
+}
+.sv-empty.visible { display: block; }
+.sv-empty svg       { width: 40px; height: 40px; opacity: .3; margin-bottom: 12px; }
+.sv-empty-title     { font-size: 15px; font-weight: 600; color: var(--t2); margin-bottom: 5px; }
+.sv-empty-sub       { font-size: 13px; }
+
+/* -------------------------------------------------------
+   19. RESPONSIVE
+------------------------------------------------------- */
+@media (max-width: 1024px) { .sv-stats-row { grid-template-columns: repeat(2,1fr); } }
+
+@media (max-width: 768px) {
+  .sv-stats-row   { grid-template-columns: repeat(2,1fr); }
+  .sv-ov-topbar   { padding: 0 16px; }
+  .sv-ov-body     { padding: 28px 16px; }
+  .sv-ov-footer   { padding: 12px 16px; }
+  .sv-nps-btn     { width: 36px; height: 36px; font-size: 12px; }
+  .sv-rating-btn  { width: 44px; height: 44px; font-size: 16px; }
+}

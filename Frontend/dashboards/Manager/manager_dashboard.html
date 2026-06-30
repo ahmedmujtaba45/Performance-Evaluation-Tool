@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manager Dashboard · EvaluAI</title>
+<meta name="description" content="EvaluAI Manager Dashboard — manage team performance evaluations and track quarterly progress." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="manager-dashboard.css" />
+</head>
+<body data-page="dashboard">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- Mobile sidebar backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+    <div class="sidebar-brand">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <span class="brand-name">EvaluAI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="manager-dashboard.html" class="nav-item is-active" data-page="dashboard" aria-current="page">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="team-members.html" class="nav-item" data-page="team">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="9.5" cy="8" r="3.25"/><path d="M19 19v-1.5a3 3 0 0 0-2.25-2.9"/><path d="M14.75 4.6a3.25 3.25 0 0 1 0 6.3"/></svg>
+        <span>Team Members</span>
+      </a>
+      <a href="kpi-evaluation.html" class="nav-item" data-page="kpi">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M11 20V4"/><path d="M18 20v-7"/><path d="M3 20h18"/></svg>
+        <span>KPI Evaluation</span>
+      </a>
+      <a href="reports.html" class="nav-item" data-page="reports">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        <span>Reports</span>
+      </a>
+      <a href="surveys.html" class="nav-item" data-page="surveys">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 3v3h6V3"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>Surveys</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>Q1 2026 evaluation cycle</p>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN AREA ============ -->
+  <div class="main-area">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        </button>
+        <h1 class="topbar-title">Manager Dashboard</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="dropdown">
+          <button class="icon-btn" id="notifBtn" aria-haspopup="true" aria-expanded="false" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge" id="notifBadge">7</span>
+          </button>
+          <div class="dropdown-panel" id="notifPanel" role="menu" aria-label="Notifications">
+            <div class="dropdown-header">Notifications</div>
+            <ul class="notif-list">
+              <li><strong>Q1 2026 review window opens</strong><span>Evaluation cycle starts in 3 days</span></li>
+              <li><strong>Michael Park</strong><span>Self-assessment submitted for review</span></li>
+              <li><strong>HR Department</strong><span>Reminder: submit final scores by Friday</span></li>
+              <li><strong>AI Insights updated</strong><span>New feedback suggestions are ready</span></li>
+            </ul>
+            <a href="#" class="dropdown-footer-link">View all notifications</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="user-trigger" id="userTrigger" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar">SM</span>
+            <span class="user-name">Sarah Mitchell</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-panel dropdown-panel--right" id="userPanel" role="menu" aria-label="Account menu">
+            <a href="#" class="dropdown-item" role="menuitem">My Profile</a>
+            <a href="#" class="dropdown-item" role="menuitem">Account Settings</a>
+            <a href="#" class="dropdown-item dropdown-item--danger" role="menuitem">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="content" id="main-content">
+
+      <div class="page-heading">
+        <h2>Manager Dashboard</h2>
+        <p>Manage team performance evaluations and track quarterly progress</p>
+      </div>
+
+      <!-- Stat cards -->
+      <section class="stats-grid" aria-label="Key performance metrics">
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Team Size</span>
+            <span class="stat-icon icon-neutral" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="9.5" cy="8" r="3.25"/><path d="M19 19v-1.5a3 3 0 0 0-2.25-2.9"/><path d="M14.75 4.6a3.25 3.25 0 0 1 0 6.3"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" data-count-to="3">0</div>
+          <div class="stat-sub">Active members</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Evaluations Done</span>
+            <span class="stat-icon icon-green" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11"/></svg>
+            </span>
+          </div>
+          <div class="stat-value"><span data-count-to="3">0</span><span class="stat-value-of">/3</span></div>
+          <div class="stat-sub stat-sub--positive">100% complete</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Team Avg Score</span>
+            <span class="stat-icon icon-blue" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" data-count-to="21.8" data-decimals="1">0</div>
+          <div class="stat-sub">Out of 25</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Pending Reviews</span>
+            <span class="stat-icon icon-amber" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" data-count-to="0">0</div>
+          <div class="stat-sub">Q1 2026 cycle</div>
+        </article>
+
+      </section>
+
+      <!-- AI Insights -->
+      <section class="ai-insights" aria-label="AI insights">
+        <div class="section-heading">
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><path d="M12 8a4 4 0 0 0 4 4 4 4 0 0 0-4 4 4 4 0 0 0-4-4 4 4 0 0 0 4-4Z"/></svg>
+          <h3>AI Insights</h3>
+        </div>
+
+        <div class="insights-grid">
+
+          <!-- AI Feedback -->
+          <article class="insight-card">
+            <div class="insight-head">
+              <span class="insight-icon icon-blue" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 4v5h-5"/></svg>
+              </span>
+              <div>
+                <h4>AI Feedback</h4>
+                <p>AI-generated evaluation suggestions</p>
+              </div>
+            </div>
+
+            <ol class="feedback-list">
+              <li>
+                <span class="num">1</span>
+                <p><strong>Emily Chen:</strong> Strong technical skills with consistent code quality above team average</p>
+              </li>
+              <li>
+                <span class="num">2</span>
+                <p><strong>Michael Park:</strong> Excellent learning agility with 100% training completion rate</p>
+              </li>
+              <li>
+                <span class="num">3</span>
+                <p><strong>David Kim:</strong> Exceptional infrastructure management with 99.95% uptime</p>
+              </li>
+            </ol>
+          </article>
+
+          <!-- Performance Prediction -->
+          <article class="insight-card">
+            <div class="insight-head">
+              <span class="insight-icon icon-green" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg>
+              </span>
+              <div>
+                <h4>Performance Prediction</h4>
+                <p>Predicted next quarter performance</p>
+              </div>
+            </div>
+
+            <div class="chart-wrap">
+              <canvas id="predictionChart" role="img" aria-label="Line chart showing team average score trending upward from 18.5 in Q2 2025 to a predicted 23.6 in Q2 2026"></canvas>
+            </div>
+            <div class="chart-legend">
+              <span><i class="legend-swatch legend-swatch--solid"></i>Actual</span>
+              <span><i class="legend-swatch legend-swatch--dashed"></i>Predicted</span>
+            </div>
+          </article>
+
+          <!-- Team Clustering -->
+          <article class="insight-card">
+            <div class="insight-head">
+              <span class="insight-icon icon-amber" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><circle cx="17.5" cy="9.5" r="2.25"/><path d="M16 19v-.5a3.5 3.5 0 0 1 3.5-3.5h.25"/></svg>
+              </span>
+              <div>
+                <h4>Team Clustering</h4>
+                <p>Employee performance categories</p>
+              </div>
+            </div>
+
+            <div class="donut-wrap">
+              <canvas id="clusterChart" role="img" aria-label="Donut chart showing 1 high performer and 2 average performers, 0 at risk"></canvas>
+            </div>
+            <ul class="cluster-legend">
+              <li><span class="dot dot-green"></span>High Performer<span class="count">1</span></li>
+              <li><span class="dot dot-blue"></span>Average Performer<span class="count">2</span></li>
+              <li><span class="dot dot-red"></span>At Risk<span class="count">0</span></li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script src="vendor/chart.umd.js"></script>
+<script src="manager-dashboard.js"></script>
+</body>
+</html>

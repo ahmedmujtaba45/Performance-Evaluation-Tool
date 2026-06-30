@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HR Dashboard · EvaluAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="hr-dashboard.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <span class="brand-mark">AI</span>
+        <span class="brand-name">EvaluAI</span>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li>
+          <button class="nav-item is-active" data-module="overview" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+            <span>Overview</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="employees" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Employees</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="manage-employees" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+            <span>Manage Employees</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="scoring" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Scoring</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="reports" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span>Reports</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="announcements" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.2-3"/></svg>
+            <span>Announcements</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="surveys" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Surveys</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>EvaluAI · v1.0</span>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="topbar-title" id="pageTitle">HR Dashboard</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="popover-wrap">
+          <button class="icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge" id="notifBadge">8</span>
+          </button>
+          <div class="popover" id="notifPopover">
+            <div class="popover-header">
+              <span>Notifications</span>
+              <button class="text-btn" id="markAllRead">Mark all read</button>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        </div>
+
+        <span class="topbar-divider"></span>
+
+        <div class="popover-wrap">
+          <button class="user-menu-btn" id="userBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar">JR</span>
+            <span class="user-name">James Rodriguez</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="popover popover-right" id="userPopover">
+            <button class="popover-item" type="button">Profile settings</button>
+            <button class="popover-item" type="button">Account &amp; security</button>
+            <hr class="popover-sep" />
+            <button class="popover-item is-danger" type="button">Log out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="toast" id="toast"></div>
+
+    <main class="content">
+
+      <section class="page-heading">
+        <h2>HR Dashboard</h2>
+        <p>Manage employee evaluations, track completion, and oversee company-wide performance</p>
+      </section>
+
+      <!-- ===== Stat Cards ===== -->
+      <section class="stats-grid" aria-label="Key metrics">
+
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Total Employees</span>
+            <span class="stat-icon stat-icon--slate">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" data-count="5">0</div>
+          <p class="stat-sub">Across 3 departments</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Evaluations Complete</span>
+            <span class="stat-icon stat-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 6 7 17 2 12"/><polyline points="22 6 11 17 9 15"/></svg>
+            </span>
+          </div>
+          <div class="stat-value"><span data-count="5">0</span><span class="stat-value-of">/5</span></div>
+          <p class="stat-sub stat-sub--positive">100% completion rate</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Company Avg Score</span>
+            <span class="stat-icon stat-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" data-count="21.9" data-decimals="1">0</div>
+          <p class="stat-sub">Out of 25</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-label">Active Surveys</span>
+            <span class="stat-icon stat-icon--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 13h6M9 17h6"/></svg>
+            </span>
+          </div>
+          <div class="stat-value" data-count="5">0</div>
+          <p class="stat-sub">1 pending review</p>
+        </article>
+
+      </section>
+
+      <!-- ===== AI Insights ===== -->
+      <section class="ai-insights">
+        <div class="section-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+          <h3>AI Insights</h3>
+        </div>
+
+        <div class="insights-grid">
+
+          <!-- AI Feedback -->
+          <article class="insight-card">
+            <div class="insight-card-head">
+              <span class="insight-icon insight-icon--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><polyline points="21 3 21 9 15 9"/></svg>
+              </span>
+              <div>
+                <h4>AI Feedback</h4>
+                <p>Generated evaluation summaries</p>
+              </div>
+            </div>
+
+            <ul class="feedback-list">
+              <li class="feedback-item">
+                <div class="feedback-row">
+                  <span class="feedback-name">David Kim</span>
+                  <span class="pill pill--top">Top Performer</span>
+                </div>
+                <div class="feedback-row">
+                  <span class="feedback-meta">Engineering</span>
+                  <span class="feedback-score">23.53</span>
+                </div>
+                <p class="feedback-note">Fast-track to senior technical roles</p>
+              </li>
+              <li class="feedback-item">
+                <div class="feedback-row">
+                  <span class="feedback-name">Emily Chen</span>
+                </div>
+                <div class="feedback-row">
+                  <span class="feedback-meta">Engineering</span>
+                  <span class="feedback-score">20.8</span>
+                </div>
+                <p class="feedback-note">Consistently high code quality with thorough peer reviews</p>
+              </li>
+              <li class="feedback-item">
+                <div class="feedback-row">
+                  <span class="feedback-name">Fahad Siddique</span>
+                </div>
+                <div class="feedback-row">
+                  <span class="feedback-meta">Marketing</span>
+                  <span class="feedback-score">19.6</span>
+                </div>
+                <p class="feedback-note">Consistently exceeds post engagement &amp; impression targets</p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Performance Prediction -->
+          <article class="insight-card">
+            <div class="insight-card-head">
+              <span class="insight-icon insight-icon--green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </span>
+              <div>
+                <h4>Performance Prediction</h4>
+                <p>Company-wide trend forecast</p>
+              </div>
+              <span class="pill pill--positive">+0.4 pts</span>
+            </div>
+
+            <div class="chart-box">
+              <canvas id="predictionChart" role="img" aria-label="Line chart of actual and predicted company average score by quarter"></canvas>
+            </div>
+            <div class="chart-legend">
+              <span class="legend-item"><i class="legend-line legend-line--actual"></i>Actual</span>
+              <span class="legend-item"><i class="legend-line legend-line--predicted"></i>Predicted</span>
+            </div>
+          </article>
+
+          <!-- Clustering -->
+          <article class="insight-card">
+            <div class="insight-card-head">
+              <span class="insight-icon insight-icon--amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              </span>
+              <div>
+                <h4>Clustering</h4>
+                <p>Workforce segmentation</p>
+              </div>
+              <span class="pill pill--neutral">5 total</span>
+            </div>
+
+            <div class="chart-box chart-box--donut">
+              <canvas id="clusterChart" role="img" aria-label="Donut chart of employees by performance category"></canvas>
+            </div>
+            <ul class="cluster-legend">
+              <li><i class="dot dot--green"></i>High Performer<span>3</span></li>
+              <li><i class="dot dot--blue"></i>Average Performer<span>2</span></li>
+              <li><i class="dot dot--red"></i>At Risk<span>0</span></li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="chart.umd.min.js"></script>
+<script src="hr-dashboard.js"></script>
+</body>
+</html>

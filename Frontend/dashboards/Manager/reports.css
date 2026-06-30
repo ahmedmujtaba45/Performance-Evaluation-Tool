@@ -1,0 +1,206 @@
+/* =========================================================
+   EvaluAI — Reports & Analytics
+   Page-specific styles only.
+   Requires shared.css to be loaded first (design tokens,
+   sidebar, topbar, dropdowns, buttons, pills, tabs, segmented
+   toggle, insight cards, form controls, base layout).
+   ========================================================= */
+
+/* ---------- Page heading row (title + export actions) ---------- */
+.page-heading-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.page-heading-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ---------- Report toolbar (segmented scope + cycle pill) ---------- */
+.report-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 24px 0 18px;
+}
+
+/* ---------- Report views & cards ---------- */
+.report-view {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.report-view[hidden] { display: none; }
+
+.report-card {
+  padding: 20px 22px;
+}
+.report-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.report-card-sub {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+}
+.report-card-icon-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.report-card-icon-heading svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-blue);
+}
+
+.report-chart-wrap {
+  position: relative;
+  height: 240px;
+  margin-top: 16px;
+}
+
+.report-feedback-text {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+/* ---------- Report tables ---------- */
+.report-table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+}
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.report-table th,
+.report-table td {
+  text-align: left;
+  padding: 11px 14px;
+  white-space: nowrap;
+}
+.report-table thead th {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+.report-table tbody tr {
+  border-bottom: 1px solid var(--color-border-soft);
+}
+.report-table tbody tr:last-child { border-bottom: none; }
+.report-table tbody td:first-child {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ---------- Individual report filters ---------- */
+.report-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.report-filters .toolbar-field { min-width: 170px; }
+.report-filters .field-select { min-width: 170px; }
+
+.form-error {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-red);
+}
+
+/* ---------- AI Analytics tab ---------- */
+.insights-grid--two {
+  grid-template-columns: repeat(2, 1fr);
+}
+.insights-grid--two .chart-wrap { height: 220px; }
+
+.ai-status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+.ai-status-card { padding: 20px 22px; }
+.ai-status-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+.ai-status-card h4 svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-green);
+}
+.ai-status-card p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.insight-disclaimer {
+  margin-top: 18px;
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ---------- Print stylesheet (Export PDF) ---------- */
+@media print {
+  .sidebar,
+  .sidebar-backdrop,
+  .topbar,
+  .tabs,
+  .report-toolbar,
+  .page-heading-actions,
+  .toast-stack,
+  .report-filters,
+  #generateReportBtn {
+    display: none !important;
+  }
+  .content { padding: 0; max-width: none; }
+  .report-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+  body { background: #fff; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .insights-grid--two,
+  .ai-status-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .page-heading-row { flex-direction: column; }
+  .page-heading-actions { width: 100%; }
+  .page-heading-actions .btn { flex: 1; }
+  .report-toolbar { flex-direction: column; align-items: stretch; }
+  .report-filters { flex-direction: column; align-items: stretch; }
+  .report-filters .toolbar-field,
+  .report-filters .field-select { min-width: 0; width: 100%; }
+  .report-filters .btn { width: 100%; }
+}

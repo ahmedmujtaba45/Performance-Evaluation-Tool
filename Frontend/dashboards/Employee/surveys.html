@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvaluAI – Surveys</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="surveys.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       SIDEBAR
+  ============================================================ -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2a3 3 0 0 0-1 5.83V9H9a4 4 0 0 0-4 4v1H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v.17A2.5 2.5 0 0 0 7 21h10a2.5 2.5 0 0 0 2-2.83V19h1a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-1v-1a4 4 0 0 0-4-4h-2V7.83A3 3 0 0 0 12 2zm-1 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm5 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-9 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+        </svg>
+      </div>
+      <span class="sb-logo-text">EvaluAI</span>
+    </div>
+
+    <nav class="sb-nav">
+      <a class="nav-item" href="employee-dashboard.html" data-page="employee-dashboard.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Overview
+      </a>
+      <a class="nav-item" href="performance-history.html" data-page="performance-history.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Performance History
+      </a>
+      <a class="nav-item" href="ai-feedback.html" data-page="ai-feedback.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/>
+        </svg>
+        AI Feedback
+      </a>
+      <a class="nav-item" href="announcements.html" data-page="announcements.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Announcements
+      </a>
+      <a class="nav-item active" href="surveys.html" data-page="surveys.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+          <line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+        </svg>
+        Surveys
+      </a>
+    </nav>
+
+    <div class="sb-footer">
+      <a class="nav-item" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+        Settings
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ============================================================
+       MAIN WRAPPER
+  ============================================================ -->
+  <div class="main-wrap">
+
+    <!-- TOP HEADER -->
+    <header class="header">
+      <span class="header-title">Employee Dashboard</span>
+      <div class="header-right">
+
+        <div class="notif-wrap">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications" onclick="toggleDropdown('notifDD')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notif-badge" id="notifCount">8</span>
+          </button>
+          <div class="notif-dropdown" id="notifDD">
+            <div class="notif-dd-head">
+              <span class="notif-dd-title">Notifications</span>
+              <span class="notif-mark-read" onclick="markAllNotifRead()">Mark all read</span>
+            </div>
+            <div class="notif-list">
+              <div class="notif-row"><div class="notif-dot"></div><div><div class="notif-msg">Q1 2026 evaluation is complete. Your final scores are now available.</div><div class="notif-time">2 hours ago</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div><div><div class="notif-msg">AI feedback has been generated based on your performance data.</div><div class="notif-time">5 hours ago</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div><div><div class="notif-msg">Your manager has submitted evaluation scores for Q1 2026.</div><div class="notif-time">Yesterday, 4:30 PM</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div><div><div class="notif-msg">Reminder: Sprint Velocity KPI deadline is approaching (June 30).</div><div class="notif-time">2 days ago</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div><div><div class="notif-msg">New announcement: Q2 2026 KPI targets have been published by HR.</div><div class="notif-time">3 days ago</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-pill-wrap" id="userPillWrap">
+          <div class="user-pill" onclick="toggleDropdown('userDD')">
+            <div class="avatar">EC</div>
+            <span class="user-name">Emily Chen</span>
+            <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="user-dropdown" id="userDD">
+            <div class="ud-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</div>
+            <div class="ud-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Account Settings</div>
+            <div class="ud-sep"></div>
+            <div class="ud-row danger"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ── CONTENT ──────────────────────────────────────── -->
+    <main class="content">
+
+      <!-- Page Heading -->
+      <div class="page-heading">
+        <h1 class="page-title">Surveys</h1>
+        <p class="page-sub">Complete assigned surveys to help improve the evaluation process and workplace culture</p>
+      </div>
+
+      <!-- ── Stats Row ──────────────────────────────────── -->
+      <div class="sv-stats-row">
+
+        <div class="sv-stat">
+          <div class="sv-stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+              <line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+            </svg>
+          </div>
+          <div class="sv-stat-body">
+            <div class="sv-stat-val">6</div>
+            <div class="sv-stat-label">Total Surveys</div>
+          </div>
+        </div>
+
+        <div class="sv-stat">
+          <div class="sv-stat-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="sv-stat-body">
+            <div class="sv-stat-val" id="svStatPending">2</div>
+            <div class="sv-stat-label">Pending</div>
+          </div>
+        </div>
+
+        <div class="sv-stat">
+          <div class="sv-stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="sv-stat-body">
+            <div class="sv-stat-val" id="svStatInProgress">1</div>
+            <div class="sv-stat-label">In Progress</div>
+          </div>
+        </div>
+
+        <div class="sv-stat">
+          <div class="sv-stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <div class="sv-stat-body">
+            <div class="sv-stat-val" id="svStatCompleted">3</div>
+            <div class="sv-stat-label">Completed</div>
+          </div>
+        </div>
+
+      </div><!-- /.sv-stats-row -->
+
+
+      <!-- ── Filter Tabs ────────────────────────────────── -->
+      <div class="sv-filter-bar">
+        <button class="sv-tab active" onclick="filterSurveys(this,'all')">
+          All <span class="sv-tab-badge">6</span>
+        </button>
+        <button class="sv-tab" onclick="filterSurveys(this,'pending')">
+          Pending <span class="sv-tab-badge">2</span>
+        </button>
+        <button class="sv-tab" onclick="filterSurveys(this,'inprogress')">
+          In Progress <span class="sv-tab-badge">1</span>
+        </button>
+        <button class="sv-tab" onclick="filterSurveys(this,'completed')">
+          Completed <span class="sv-tab-badge">3</span>
+        </button>
+        <button class="sv-tab" onclick="filterSurveys(this,'expired')">
+          Expired <span class="sv-tab-badge">0</span>
+        </button>
+      </div>
+
+
+      <!-- ══════════════════════════════════════════
+           SURVEY CARDS
+      ══════════════════════════════════════════ -->
+      <div class="sv-list">
+
+        <!-- ── Survey 1: Q1 Satisfaction (Pending, urgent) ── -->
+        <div class="sv-card pending" data-status="pending" data-survey="sv1">
+          <div class="sv-card-top">
+            <span class="sv-status-badge pending">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Pending
+            </span>
+            <span class="sv-cat-badge">Satisfaction</span>
+            <span class="sv-anon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Anonymous
+            </span>
+            <span class="sv-due-date urgent">⏰ Due Jun 30, 2026</span>
+          </div>
+
+          <div class="sv-card-title">Q1 2026 Employee Satisfaction Survey</div>
+          <div class="sv-card-desc">Share your experience with the performance evaluation process, workplace culture, and team dynamics for Q1 2026. Your responses are completely anonymous and help HR improve the system.</div>
+
+          <div class="sv-card-meta">
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              10 questions
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~5 minutes
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Assigned by HR
+            </div>
+          </div>
+
+          <div class="sv-card-progress">
+            <div class="sv-prog-labels">
+              <span class="sv-prog-label">Not started</span>
+              <span class="sv-prog-pct">0%</span>
+            </div>
+            <div class="sv-prog-track">
+              <div class="sv-prog-fill blue" data-w="0"></div>
+            </div>
+          </div>
+
+          <div class="sv-card-foot">
+            <span class="sv-card-submeta">Required · Q1 2026 Evaluation Cycle</span>
+            <button class="sv-action-btn take" onclick="openSurvey('sv1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              Take Survey
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Survey 2: Culture & Engagement (Pending) ── -->
+        <div class="sv-card pending" data-status="pending" data-survey="sv2">
+          <div class="sv-card-top">
+            <span class="sv-status-badge pending">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Pending
+            </span>
+            <span class="sv-cat-badge">Engagement</span>
+            <span class="sv-anon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Anonymous
+            </span>
+            <span class="sv-due-date">Due Jul 5, 2026</span>
+          </div>
+
+          <div class="sv-card-title">Mid-Year Culture &amp; Engagement Survey 2026</div>
+          <div class="sv-card-desc">Help leadership understand the current state of workplace culture, team morale, and employee engagement at EvaluAI. This mid-year survey informs HR and management planning for Q3–Q4.</div>
+
+          <div class="sv-card-meta">
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              15 questions
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~8 minutes
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Assigned by HR
+            </div>
+          </div>
+
+          <div class="sv-card-progress">
+            <div class="sv-prog-labels">
+              <span class="sv-prog-label">Not started</span>
+              <span class="sv-prog-pct">0%</span>
+            </div>
+            <div class="sv-prog-track">
+              <div class="sv-prog-fill blue" data-w="0"></div>
+            </div>
+          </div>
+
+          <div class="sv-card-foot">
+            <span class="sv-card-submeta">Required · All Employees</span>
+            <button class="sv-action-btn take" onclick="openSurvey('sv2')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              Take Survey
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Survey 3: 360° Peer Feedback (In Progress, 3/10) ── -->
+        <div class="sv-card inprogress" data-status="inprogress" data-survey="sv3">
+          <div class="sv-card-top">
+            <span class="sv-status-badge inprogress">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              In Progress
+            </span>
+            <span class="sv-cat-badge" style="background:#ecfeff;color:#164e63;">Peer Feedback</span>
+            <span class="sv-due-date urgent">⏰ Due Jun 28, 2026</span>
+          </div>
+
+          <div class="sv-card-title">360° Peer Feedback — Michael Park</div>
+          <div class="sv-card-desc">Provide structured peer feedback for Michael Park (Software Engineer) on his technical skills, collaboration, communication, and team contribution during Q1 2026.</div>
+
+          <div class="sv-card-meta">
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              10 questions
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~6 minutes
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Manager-assigned
+            </div>
+          </div>
+
+          <div class="sv-card-progress">
+            <div class="sv-prog-labels">
+              <span class="sv-prog-label">3 of 10 questions answered</span>
+              <span class="sv-prog-pct">30%</span>
+            </div>
+            <div class="sv-prog-track">
+              <div class="sv-prog-fill amber" data-w="30"></div>
+            </div>
+          </div>
+
+          <div class="sv-card-foot">
+            <span class="sv-card-submeta">Progress auto-saved</span>
+            <button class="sv-action-btn cont" onclick="openSurvey('sv3')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              Continue
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Survey 4: Q4 2025 Training Effectiveness (Completed) ── -->
+        <div class="sv-card completed" data-status="completed" data-survey="sv4">
+          <div class="sv-card-top">
+            <span class="sv-status-badge completed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+              Completed
+            </span>
+            <span class="sv-cat-badge" style="background:#f0fdf4;color:#065f46;">Training</span>
+            <span class="sv-anon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Anonymous
+            </span>
+            <span class="sv-due-date">Submitted Dec 15, 2025</span>
+          </div>
+
+          <div class="sv-card-title">Q4 2025 Training Effectiveness Survey</div>
+          <div class="sv-card-desc">Evaluated the effectiveness of Q3–Q4 2025 training programmes attended, including feedback on content relevance, delivery quality, and impact on daily work.</div>
+
+          <div class="sv-card-meta">
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              8 questions
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~4 minutes
+            </div>
+          </div>
+
+          <div class="sv-card-progress">
+            <div class="sv-prog-labels">
+              <span class="sv-prog-label">Completed</span>
+              <span class="sv-prog-pct">100%</span>
+            </div>
+            <div class="sv-prog-track"><div class="sv-prog-fill green" data-w="100"></div></div>
+          </div>
+
+          <div class="sv-card-foot">
+            <span class="sv-card-submeta">Submitted Dec 15, 2025</span>
+            <button class="sv-action-btn view">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View Results
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Survey 5: Q3 2025 Pulse (Completed) ── -->
+        <div class="sv-card completed" data-status="completed" data-survey="sv5">
+          <div class="sv-card-top">
+            <span class="sv-status-badge completed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+              Completed
+            </span>
+            <span class="sv-cat-badge">Satisfaction</span>
+            <span class="sv-anon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Anonymous
+            </span>
+            <span class="sv-due-date">Submitted Sep 28, 2025</span>
+          </div>
+
+          <div class="sv-card-title">Q3 2025 Employee Pulse Survey</div>
+          <div class="sv-card-desc">Quick quarterly pulse check covering job satisfaction, team dynamics, and immediate concerns. Results were shared with department heads in October 2025.</div>
+
+          <div class="sv-card-meta">
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              6 questions
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~3 minutes
+            </div>
+          </div>
+
+          <div class="sv-card-progress">
+            <div class="sv-prog-labels">
+              <span class="sv-prog-label">Completed</span>
+              <span class="sv-prog-pct">100%</span>
+            </div>
+            <div class="sv-prog-track"><div class="sv-prog-fill green" data-w="100"></div></div>
+          </div>
+
+          <div class="sv-card-foot">
+            <span class="sv-card-submeta">Submitted Sep 28, 2025</span>
+            <button class="sv-action-btn view">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View Results
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Survey 6: Evaluation Feedback Q1 2025 (Completed) ── -->
+        <div class="sv-card completed" data-status="completed" data-survey="sv6">
+          <div class="sv-card-top">
+            <span class="sv-status-badge completed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+              Completed
+            </span>
+            <span class="sv-cat-badge">Evaluation</span>
+            <span class="sv-anon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Anonymous
+            </span>
+            <span class="sv-due-date">Submitted Mar 31, 2025</span>
+          </div>
+
+          <div class="sv-card-title">Evaluation Process Feedback — Q1 2025</div>
+          <div class="sv-card-desc">Post-evaluation survey covering the fairness, transparency, and usability of the Q1 2025 performance evaluation process. Used to refine the EvaluAI scoring methodology.</div>
+
+          <div class="sv-card-meta">
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              7 questions
+            </div>
+            <div class="sv-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~4 minutes
+            </div>
+          </div>
+
+          <div class="sv-card-progress">
+            <div class="sv-prog-labels">
+              <span class="sv-prog-label">Completed</span>
+              <span class="sv-prog-pct">100%</span>
+            </div>
+            <div class="sv-prog-track"><div class="sv-prog-fill green" data-w="100"></div></div>
+          </div>
+
+          <div class="sv-card-foot">
+            <span class="sv-card-submeta">Submitted Mar 31, 2025</span>
+            <button class="sv-action-btn view">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View Results
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /.sv-list -->
+
+      <!-- Empty state -->
+      <div class="sv-empty" id="svEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+        </svg>
+        <div class="sv-empty-title">No surveys found</div>
+        <div class="sv-empty-sub">Try a different filter to see surveys.</div>
+      </div>
+
+    </main>
+  </div><!-- /.main-wrap -->
+
+
+  <!-- ============================================================
+       SURVEY-TAKING OVERLAY  (full-viewport slide-up)
+  ============================================================ -->
+  <div class="sv-overlay" id="svOverlay">
+
+    <!-- Top bar -->
+    <div class="sv-ov-topbar">
+      <button class="sv-ov-back" onclick="closeSurvey()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back to Surveys
+      </button>
+      <div class="sv-ov-title" id="svOvTitle">Survey</div>
+      <div class="sv-ov-qcount" id="svQCount">1 of 10</div>
+    </div>
+
+    <!-- Progress strip -->
+    <div class="sv-ov-progress-strip">
+      <div class="sv-ov-progress-fill" id="svProgressFill"></div>
+    </div>
+
+    <!-- Question view -->
+    <div id="svQuestionView" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+
+      <!-- Scrollable question body -->
+      <div class="sv-ov-body" id="svOvBody">
+        <div class="sv-q-wrap">
+          <div class="sv-q-num"  id="svQNum">Question 1 of 10</div>
+          <div class="sv-q-text" id="svQText"></div>
+          <div class="sv-q-hint" id="svQHint"></div>
+          <div id="svAnswerArea"></div>
+        </div>
+      </div>
+
+      <!-- Navigation footer -->
+      <div class="sv-ov-footer">
+        <button class="sv-nav-btn" id="svPrevBtn" onclick="prevQuestion()" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Previous
+        </button>
+
+        <div class="sv-autosave" id="svAutosave">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+          </svg>
+          Answers auto-saved
+        </div>
+
+        <button class="sv-nav-btn primary" id="svNextBtn" onclick="nextQuestion()">
+          Next
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+
+    </div><!-- /#svQuestionView -->
+
+    <!-- Completion / Thank-you screen -->
+    <div class="sv-complete-screen" id="svCompleteScreen">
+      <div class="sv-complete-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="sv-complete-title">Survey Submitted!</div>
+      <div class="sv-complete-sub">
+        Thank you — your response has been recorded. Your answers are anonymous and will help HR and management improve the evaluation process and workplace experience at EvaluAI.
+      </div>
+      <button class="sv-complete-btn" onclick="closeSurvey()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back to Surveys
+      </button>
+    </div>
+
+  </div><!-- /.sv-overlay -->
+
+
+  <script src="surveys.js"></script>
+</body>
+</html>

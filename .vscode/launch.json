@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    
+
+    {
+      "name": "Launch Frontend - Login Page",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "file": "${workspaceFolder}/Frontend/auth/login.html",
+      "webRoot": "${workspaceFolder}/Frontend"
+    },
+    {
+      "name": "Launch Frontend - Admin Dashboard",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "file": "${workspaceFolder}/Frontend/dashboards/Admin/admin_dashboard.html",
+      "webRoot": "${workspaceFolder}/Frontend"
+    },
+    {
+      "name": "Launch Backend - ASP.NET Core",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Backend/bin/Debug/net7.0/PerformanceEvalTool.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Backend",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:7001;http://localhost:5000"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Backend/Views"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch Full Stack",
+      "configurations": [
+        "Launch Backend - ASP.NET Core",
+        "Launch Frontend - Login Page"
+      ],
+      "stopAll": true
+    }
+  ]
+}

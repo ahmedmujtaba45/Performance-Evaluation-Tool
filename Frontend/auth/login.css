@@ -1,0 +1,457 @@
+/* ============================================================
+   login.css — E1-US1 User Login
+   AI-Powered Performance Evaluation Tool
+   Stack: Vanilla HTML/CSS/JS  |  Template: Chapter 2 prototype
+   ============================================================ */
+
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Brand palette */
+    --navy:        #1a2540;
+    --navy-deep:   #111827;
+    --navy-mid:    #1e3a5f;
+    --accent:      #2563eb;      /* CTA blue */
+    --accent-hover:#1d4ed8;
+    --accent-light:#eff6ff;
+
+    /* Neutral */
+    --surface:     #ffffff;
+    --bg-page:     #f1f5f9;
+    --border:      #e2e8f0;
+    --border-focus:#2563eb;
+    --text-primary:#0f172a;
+    --text-secondary:#64748b;
+    --text-placeholder:#94a3b8;
+
+    /* Roles */
+    --role-active-bg:    #ffffff;
+    --role-active-text:  #0f172a;
+    --role-inactive-bg:  transparent;
+    --role-inactive-text:#64748b;
+
+    /* Status */
+    --error:       #dc2626;
+    --error-light: #fef2f2;
+    --error-border:#fca5a5;
+
+    /* Sizing */
+    --radius-card: 16px;
+    --radius-input: 10px;
+    --radius-btn:   10px;
+    --transition:   180ms ease;
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    color: var(--text-primary);
+    background: var(--bg-page);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Page layout: two-column split ───────────────────────── */
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ── Left branding panel ──────────────────────────────────── */
+.branding-panel {
+    flex: 0 0 42%;
+    background: linear-gradient(160deg, var(--navy-mid) 0%, var(--navy-deep) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 52px;
+    color: #fff;
+    /* hide on very small screens */
+}
+
+.brand-logo {
+    width: 100px;
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.brand-logo-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+.brand-logo-caption {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    font-weight: 500;
+}
+
+.brand-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.brand-tagline {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 40px;
+}
+
+.brand-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.brand-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.925rem;
+    color: rgba(255,255,255,0.85);
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    font-size: 0.75rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.brand-footer {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+}
+
+/* ── Right login panel ────────────────────────────────────── */
+.login-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    background: var(--bg-page);
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.login-card {
+    background: var(--surface);
+    border-radius: var(--radius-card);
+    padding: 44px 44px 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04),
+                0 6px 24px rgba(0,0,0,.07);
+}
+
+/* ── Card header ──────────────────────────────────────────── */
+.card-header {
+    margin-bottom: 28px;
+}
+
+.card-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.card-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* ── Role selector ────────────────────────────────────────── */
+.role-section {
+    margin-bottom: 24px;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+/* 2×2 grid — matches prototype layout */
+.role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.role-btn {
+    background: var(--role-inactive-bg);
+    color: var(--role-inactive-text);
+    border: none;
+    padding: 12px 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    background-color: var(--bg-page);
+    outline: none;
+}
+
+.role-btn:hover:not(.active) {
+    background-color: var(--accent-light);
+    color: var(--accent);
+}
+
+.role-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+    z-index: 1;
+    position: relative;
+}
+
+/* Active state — white background, dark text — matches prototype "Manager" */
+.role-btn.active {
+    background: var(--role-active-bg);
+    color: var(--role-active-text);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,.10);
+}
+
+/* ── Form groups ──────────────────────────────────────────── */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-placeholder);
+    display: flex;
+    pointer-events: none;
+    transition: color var(--transition);
+}
+
+.form-input {
+    width: 100%;
+    padding: 13px 14px 13px 44px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-input);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    background: var(--surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: var(--text-placeholder);
+}
+
+.form-input:hover {
+    border-color: #94a3b8;
+}
+
+.form-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+.form-input:focus ~ .input-icon,
+.input-wrapper:focus-within .input-icon {
+    color: var(--accent);
+}
+
+/* Password field with extra right padding for eye-toggle */
+#password {
+    padding-right: 44px;
+}
+
+/* Eye toggle button */
+.eye-toggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-placeholder);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color var(--transition);
+}
+
+.eye-toggle:hover {
+    color: var(--accent);
+}
+
+.eye-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+/* Validation error text */
+.field-error {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--error);
+    margin-top: 5px;
+    min-height: 1rem;
+}
+
+/* Error state on input */
+.form-input.is-error {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px rgba(220,38,38,.1);
+}
+
+/* ── Global alert ─────────────────────────────────────────── */
+.alert-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--error-light);
+    border: 1px solid var(--error-border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 0.875rem;
+    color: var(--error);
+    margin-bottom: 16px;
+}
+
+/* ── Sign In button ───────────────────────────────────────── */
+.btn-signin {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-btn);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background var(--transition), transform 80ms ease, box-shadow var(--transition);
+    margin-top: 8px;
+}
+
+.btn-signin:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 4px 14px rgba(37,99,235,.3);
+}
+
+.btn-signin:active {
+    transform: scale(0.99);
+}
+
+.btn-signin:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.btn-signin:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Spinner (CSS-only ring) */
+.btn-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Forgot password ──────────────────────────────────────── */
+.forgot-link {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.forgot-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link a:hover {
+    text-decoration: underline;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 820px) {
+    .branding-panel {
+        display: none;          /* hide branding on mobile */
+    }
+
+    .login-panel {
+        background: var(--surface);
+    }
+
+    .login-card {
+        box-shadow: none;
+        padding: 36px 28px;
+    }
+}
+
+@media (max-width: 400px) {
+    .login-card {
+        padding: 28px 20px;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .btn-spinner {
+        animation: none;
+        opacity: 0.7;
+    }
+    *, *::before, *::after {
+        transition: none !important;
+    }
+}

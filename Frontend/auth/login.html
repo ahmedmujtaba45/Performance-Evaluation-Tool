@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In – AI Performance Evaluation Tool</title>
+    <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <!-- Left branding panel -->
+        <div class="branding-panel">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <img src="../assets/images/logo.png"alt="AI Performance Evaluation Tool Logo" class="brand-logo-img">
+                    <p class="brand-logo-caption">AppinSnap</p>
+                    </div>
+
+<h1 class="brand-title">AI Performance<br/>Evaluation Tool</h1>
+                <p class="brand-tagline">Smarter evaluations. Fairer outcomes.</p>
+                <ul class="brand-features" aria-label="Key features">
+                    <li>
+                        <span class="feature-icon" aria-hidden="true">&#10003;</span>
+                        KPI-based quarterly evaluations
+                    </li>
+                    <li>
+                        <span class="feature-icon" aria-hidden="true">&#10003;</span>
+                        AI-generated feedback &amp; insights
+                    </li>
+                    <li>
+                        <span class="feature-icon" aria-hidden="true">&#10003;</span>
+                        Bias detection &amp; fairness scoring
+                    </li>
+                    <li>
+                        <span class="feature-icon" aria-hidden="true">&#10003;</span>
+                        Role-based dashboards
+                    </li>
+                </ul>
+            </div>
+            <p class="brand-footer">BS SE 231 Capital University of Science &amp; Technology</p>
+        </div>
+
+        <!-- Right login panel -->
+        <div class="login-panel">
+            <div class="login-card">
+
+                <header class="card-header">
+                    <h2 class="card-title">Sign In</h2>
+                    <p class="card-subtitle">Select your role and enter your credentials</p>
+                </header>
+
+                <!-- Role selector — matches prototype grid (Manager / HR / Employee / Admin) -->
+                <div class="role-section">
+                    <label class="field-label" id="role-label">Select Role</label>
+                    <div class="role-grid" role="radiogroup" aria-labelledby="role-label">
+                        <button
+                            type="button"
+                            class="role-btn active"
+                            data-role="Manager"
+                            aria-pressed="true"
+                        >Manager</button>
+                        <button
+                            type="button"
+                            class="role-btn"
+                            data-role="HR"
+                            aria-pressed="false"
+                        >HR</button>
+                        <button
+                            type="button"
+                            class="role-btn"
+                            data-role="Employee"
+                            aria-pressed="false"
+                        >Employee</button>
+                        <button
+                            type="button"
+                            class="role-btn"
+                            data-role="Admin"
+                            aria-pressed="false"
+                        >Admin</button>
+                    </div>
+                    <!-- Hidden input carries the selected role to the form payload -->
+                    <input type="hidden" id="selectedRole" name="role" value="Manager" />
+                </div>
+
+                <!-- Login form -->
+                <form id="loginForm" novalidate>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="field-label" for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">
+                                <!-- Envelope icon -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M2 7l10 7 10-7"/>
+                                </svg>
+                            </span>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-input"
+                                placeholder="name@company.com"
+                                autocomplete="email"
+                                required
+                                aria-required="true"
+                                aria-describedby="email-error"
+                            />
+                        </div>
+                        <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label class="field-label" for="password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">
+                                <!-- Lock icon -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                            </span>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-input"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                                aria-required="true"
+                                aria-describedby="password-error"
+                            />
+                            <!-- Toggle password visibility — eye icon -->
+                            <button
+                                type="button"
+                                class="eye-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                                title="Show / hide password"
+                            >
+                                <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="field-error" id="password-error" role="alert" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Global API error (e.g. invalid credentials) -->
+                    <div class="alert-error" id="globalError" role="alert" aria-live="assertive" hidden>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <span id="globalErrorText">Invalid email or password.</span>
+                    </div>
+
+                    <!-- Sign In button -->
+                    <button type="submit" class="btn-signin" id="signinBtn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-spinner" hidden aria-hidden="true"></span>
+                    </button>
+
+                </form>
+
+                <p class="forgot-link"><a href="forgot-password.html">Forgot password?</a></p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

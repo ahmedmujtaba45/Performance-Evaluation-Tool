@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surveys &amp; Feedback · EvaluAI</title>
+<meta name="description" content="EvaluAI Surveys &amp; Feedback — submit manager feedback and quarterly pulse survey responses for your team." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="surveys.css" />
+</head>
+<body data-page="surveys">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- Mobile sidebar backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+    <div class="sidebar-brand">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <span class="brand-name">EvaluAI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="manager-dashboard.html" class="nav-item" data-page="dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="team-members.html" class="nav-item" data-page="team">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="9.5" cy="8" r="3.25"/><path d="M19 19v-1.5a3 3 0 0 0-2.25-2.9"/><path d="M14.75 4.6a3.25 3.25 0 0 1 0 6.3"/></svg>
+        <span>Team Members</span>
+      </a>
+      <a href="kpi-evaluation.html" class="nav-item" data-page="kpi">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M11 20V4"/><path d="M18 20v-7"/><path d="M3 20h18"/></svg>
+        <span>KPI Evaluation</span>
+      </a>
+      <a href="reports.html" class="nav-item" data-page="reports">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        <span>Reports</span>
+      </a>
+      <a href="surveys.html" class="nav-item is-active" data-page="surveys" aria-current="page">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 3v3h6V3"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>Surveys</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>Q1 2026 evaluation cycle</p>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN AREA ============ -->
+  <div class="main-area">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        </button>
+        <h1 class="topbar-title">Surveys &amp; Feedback</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="dropdown">
+          <button class="icon-btn" id="notifBtn" aria-haspopup="true" aria-expanded="false" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge">7</span>
+          </button>
+          <div class="dropdown-panel" role="menu" aria-label="Notifications">
+            <div class="dropdown-header">Notifications</div>
+            <ul class="notif-list">
+              <li><strong>Q1 2026 review window opens</strong><span>Evaluation cycle starts in 3 days</span></li>
+              <li><strong>Michael Park</strong><span>Self-assessment submitted for review</span></li>
+              <li><strong>HR Department</strong><span>Reminder: submit final scores by Friday</span></li>
+              <li><strong>AI Insights updated</strong><span>New feedback suggestions are ready</span></li>
+            </ul>
+            <a href="#" class="dropdown-footer-link">View all notifications</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="user-trigger" id="userTrigger" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar">SM</span>
+            <span class="user-name">Sarah Mitchell</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-panel dropdown-panel--right" role="menu" aria-label="Account menu">
+            <a href="#" class="dropdown-item" role="menuitem">My Profile</a>
+            <a href="#" class="dropdown-item" role="menuitem">Account Settings</a>
+            <a href="#" class="dropdown-item dropdown-item--danger" role="menuitem">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="content" id="main-content">
+
+      <div class="page-heading">
+        <h2>Surveys &amp; Feedback</h2>
+        <p>Submit manager feedback and quarterly pulse survey responses for your team</p>
+      </div>
+
+      <div class="surveys-layout">
+
+        <!-- ============ EMPLOYEE PICKER ============ -->
+        <aside class="survey-picker surface-card" aria-label="Select a team member">
+          <div class="survey-picker-header">
+            <h3>Team Members</h3>
+            <p>Engineering Department</p>
+          </div>
+          <ul class="survey-employee-list" id="surveyEmployeeList"></ul>
+        </aside>
+
+        <!-- ============ MAIN PANEL ============ -->
+        <section class="survey-panel surface-card" aria-label="Feedback and survey form">
+
+          <!-- Employee header -->
+          <div class="survey-emp-header">
+            <div class="survey-emp-identity">
+              <span class="avatar avatar-lg" id="survEmpAvatar"></span>
+              <div>
+                <h3 id="survEmpName"></h3>
+                <p id="survEmpTitle"></p>
+              </div>
+            </div>
+            <span class="pill" id="survEmpPill"></span>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs" role="tablist" aria-label="Feedback and survey sections">
+            <button class="tab-btn is-active" id="tabBtnFeedback" role="tab"
+              aria-selected="true" aria-controls="tabPanelFeedback" data-tab="feedback">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Manager Feedback
+            </button>
+            <button class="tab-btn" id="tabBtnSurvey" role="tab"
+              aria-selected="false" aria-controls="tabPanelSurvey" data-tab="survey">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Pulse Survey
+            </button>
+          </div>
+
+          <!-- ======== MANAGER FEEDBACK TAB ======== -->
+          <div class="tab-panel" id="tabPanelFeedback" role="tabpanel" aria-labelledby="tabBtnFeedback">
+
+            <!-- Submitted view -->
+            <div id="feedbackSubmittedView" hidden>
+              <div class="fb-submitted-head">
+                <div class="fb-submitted-meta">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                  <div>
+                    <strong>Feedback submitted</strong>
+                    <span id="fbSubmittedDate"></span>
+                  </div>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="editFeedbackBtn" type="button">Edit Feedback</button>
+              </div>
+              <blockquote class="fb-text" id="fbSubmittedText"></blockquote>
+            </div>
+
+            <!-- Form view -->
+            <div id="feedbackFormView">
+              <div class="fb-form-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <h4>Manager Feedback</h4>
+              </div>
+              <p class="fb-subtitle" id="fbSubtitle"></p>
+              <textarea
+                class="field-textarea fb-textarea"
+                id="fbTextarea"
+                maxlength="1000"
+                rows="6"
+                aria-label="Manager feedback text"
+                aria-describedby="fbError charCounter"></textarea>
+              <p class="form-error" id="fbError" role="alert" hidden>Feedback text cannot be empty</p>
+              <div class="fb-footer">
+                <span class="char-counter" id="charCounter" aria-live="polite">0 / 1000</span>
+                <button class="btn btn-primary" id="submitFeedbackBtn" type="button" disabled>Submit Feedback</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ======== PULSE SURVEY TAB ======== -->
+          <div class="tab-panel" id="tabPanelSurvey" role="tabpanel" aria-labelledby="tabBtnSurvey" hidden>
+
+            <!-- Submitted view -->
+            <div id="surveySubmittedView" hidden>
+              <div class="survey-done-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <div>
+                  <strong>Pulse survey submitted</strong>
+                  <span id="surveySubmittedDate"></span>
+                </div>
+              </div>
+              <div class="survey-done-grid" id="surveyDoneGrid"></div>
+            </div>
+
+            <!-- Form view -->
+            <div id="surveyFormView">
+              <div class="survey-form-head">
+                <h4>Quarterly Pulse Survey — Q1 2026</h4>
+                <p>Rate each area from 1 (Poor) to 5 (Excellent) to help improve team health and culture.</p>
+              </div>
+              <div class="survey-questions" id="surveyQuestions"></div>
+              <p class="form-error" id="surveyError" role="alert" hidden>Please rate all questions before submitting</p>
+              <div class="survey-form-actions">
+                <button class="btn btn-primary" id="submitSurveyBtn" type="button">Submit Survey</button>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script src="surveys.js"></script>
+</body>
+</html>

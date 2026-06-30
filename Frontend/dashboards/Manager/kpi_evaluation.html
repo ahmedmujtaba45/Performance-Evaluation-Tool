@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KPI Evaluation · EvaluAI</title>
+<meta name="description" content="EvaluAI KPI Evaluation — score your team's quarterly KPIs and submit evaluations." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="kpi-evaluation.css" />
+</head>
+<body data-page="kpi">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- Mobile sidebar backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+    <div class="sidebar-brand">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <span class="brand-name">EvaluAI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="manager-dashboard.html" class="nav-item" data-page="dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="team-members.html" class="nav-item" data-page="team">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="9.5" cy="8" r="3.25"/><path d="M19 19v-1.5a3 3 0 0 0-2.25-2.9"/><path d="M14.75 4.6a3.25 3.25 0 0 1 0 6.3"/></svg>
+        <span>Team Members</span>
+      </a>
+      <a href="kpi-evaluation.html" class="nav-item is-active" data-page="kpi" aria-current="page">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M11 20V4"/><path d="M18 20v-7"/><path d="M3 20h18"/></svg>
+        <span>KPI Evaluation</span>
+      </a>
+      <a href="reports.html" class="nav-item" data-page="reports">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        <span>Reports</span>
+      </a>
+      <a href="surveys.html" class="nav-item" data-page="surveys">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 3v3h6V3"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>Surveys</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>Q1 2026 evaluation cycle</p>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN AREA ============ -->
+  <div class="main-area">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        </button>
+        <h1 class="topbar-title">KPI Evaluation</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="dropdown">
+          <button class="icon-btn" id="notifBtn" aria-haspopup="true" aria-expanded="false" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge" id="notifBadge">7</span>
+          </button>
+          <div class="dropdown-panel" id="notifPanel" role="menu" aria-label="Notifications">
+            <div class="dropdown-header">Notifications</div>
+            <ul class="notif-list">
+              <li><strong>Q1 2026 review window opens</strong><span>Evaluation cycle starts in 3 days</span></li>
+              <li><strong>Michael Park</strong><span>Self-assessment submitted for review</span></li>
+              <li><strong>HR Department</strong><span>Reminder: submit final scores by Friday</span></li>
+              <li><strong>AI Insights updated</strong><span>New feedback suggestions are ready</span></li>
+            </ul>
+            <a href="#" class="dropdown-footer-link">View all notifications</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="user-trigger" id="userTrigger" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar">SM</span>
+            <span class="user-name">Sarah Mitchell</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-panel dropdown-panel--right" id="userPanel" role="menu" aria-label="Account menu">
+            <a href="#" class="dropdown-item" role="menuitem">My Profile</a>
+            <a href="#" class="dropdown-item" role="menuitem">Account Settings</a>
+            <a href="#" class="dropdown-item dropdown-item--danger" role="menuitem">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="content" id="main-content">
+
+      <div class="page-heading">
+        <h2>KPI Evaluation</h2>
+        <p>Score your team's quarterly KPIs and submit evaluations</p>
+      </div>
+
+      <div class="evaluation-layout">
+
+        <!-- ============ EMPLOYEE PICKER ============ -->
+        <aside class="employee-picker surface-card" aria-label="Select a team member to evaluate">
+          <div class="employee-picker-header">
+            <h3>Team Members</h3>
+            <p>Engineering Department</p>
+          </div>
+          <ul class="employee-list" id="employeeList"></ul>
+        </aside>
+
+        <!-- ============ EVALUATION PANEL ============ -->
+        <section class="evaluation-panel surface-card" aria-label="Evaluation form">
+
+          <div class="evaluation-header">
+            <div class="evaluation-identity">
+              <span class="avatar avatar-lg" id="empAvatar"></span>
+              <div>
+                <h3 id="empName"></h3>
+                <p id="empTitle"></p>
+              </div>
+            </div>
+            <span class="pill" id="empStatusPill"></span>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Evaluation sections">
+            <button class="tab-btn is-active" id="tabBtnOverview" role="tab" aria-selected="true" aria-controls="tabPanelOverview" data-tab="overview">Overview</button>
+            <button class="tab-btn" id="tabBtnEvaluation" role="tab" aria-selected="false" aria-controls="tabPanelEvaluation" data-tab="evaluation">Evaluation</button>
+            <button class="tab-btn" id="tabBtnInsights" role="tab" aria-selected="false" aria-controls="tabPanelInsights" data-tab="insights">Insights</button>
+          </div>
+
+          <!-- ---------- Overview tab ---------- -->
+          <div class="tab-panel" id="tabPanelOverview" role="tabpanel" aria-labelledby="tabBtnOverview">
+            <dl class="overview-details">
+              <div><dt>Department</dt><dd id="ovDept"></dd></div>
+              <div><dt>Email</dt><dd id="ovEmail"></dd></div>
+              <div><dt>Employee ID</dt><dd id="ovEmployeeId"></dd></div>
+              <div><dt>KPIs assigned</dt><dd id="ovKpiCount"></dd></div>
+              <div><dt>Last evaluated</dt><dd id="ovLastEvaluated"></dd></div>
+              <div><dt>Cycle</dt><dd>Q1 2026</dd></div>
+            </dl>
+            <button class="btn btn-primary btn-sm" type="button" data-go-tab="evaluation">Go to Evaluation</button>
+          </div>
+
+          <!-- ---------- Evaluation tab ---------- -->
+          <div class="tab-panel" id="tabPanelEvaluation" role="tabpanel" aria-labelledby="tabBtnEvaluation" hidden>
+            <div class="form-heading">
+              <h4>KPI Evaluation Form</h4>
+              <span class="pill pill-neutral">Q1 2026</span>
+            </div>
+
+            <div class="kpi-list" id="kpiList"></div>
+
+            <div class="evaluation-summary">
+              <div class="summary-row">
+                <span>Manager evaluation <small>(this form)</small></span>
+                <strong id="summaryManagerScore">0.0 / 20</strong>
+              </div>
+              <div class="summary-row">
+                <span>HR evaluation <small>(set separately by HR)</small></span>
+                <strong id="summaryHrScore">0.0 / 5</strong>
+              </div>
+              <div class="summary-row summary-row--total">
+                <span>Total score</span>
+                <strong id="summaryTotalScore">0.0 / 25</strong>
+              </div>
+              <p class="summary-weight-note" id="summaryWeightNote"></p>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-secondary" id="saveDraftBtn" type="button">Save as Draft</button>
+              <button class="btn btn-primary" id="submitEvalBtn" type="button">Submit Evaluation</button>
+            </div>
+          </div>
+
+          <!-- ---------- Insights tab ---------- -->
+          <div class="tab-panel" id="tabPanelInsights" role="tabpanel" aria-labelledby="tabBtnInsights" hidden>
+            <div class="insight-block">
+              <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 4v5h-5"/></svg>
+                AI Feedback
+              </h4>
+              <p id="insightFeedback"></p>
+            </div>
+
+            <div class="insight-block">
+              <h4>KPI score breakdown</h4>
+              <div class="insight-chart-wrap">
+                <canvas id="kpiBreakdownChart" role="img" aria-label="Bar chart of this employee's score on each KPI"></canvas>
+              </div>
+            </div>
+
+            <div class="insight-block">
+              <h4>Suggested follow-ups</h4>
+              <ul class="suggestions-list" id="insightSuggestions"></ul>
+            </div>
+
+            <p class="insight-disclaimer">AI insights are generated from this quarter's KPI scores and historical evaluation trends, and are meant to support — not replace — your judgement.</p>
+          </div>
+
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script src="vendor/chart.umd.js"></script>
+<script src="kpi-evaluation.js"></script>
+</body>
+</html>

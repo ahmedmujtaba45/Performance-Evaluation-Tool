@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EvaluAI – AI Analytics</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="ai_analytics.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div class="brand-icon">AI</div>
+    <span class="brand-name">EvaluAI</span>
+  </div>
+  <span class="navbar-title">AI Analytics</span>
+  <div class="navbar-right">
+    <button class="notif-btn">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+      </svg>
+      <span class="notif-badge">9</span>
+    </button>
+    <div class="user-profile">
+      <div class="av-circle">RH</div>
+      <span class="user-name">Robert Hayes</span>
+      <svg style="width:14px;height:14px;color:#94A3B8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <a class="nav-item" href="admin_dashboard.html">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+      Overview
+    </a>
+    <a class="nav-item" href="user_management.html">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6 5.87v-1a4 4 0 00-4-4H8a4 4 0 00-4 4v1m8 0a4 4 0 014-4h1a4 4 0 014 4v1M13 7a4 4 0 11-8 0 4 4 0 018 0zm6 3a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      User Management
+    </a>
+    <a class="nav-item" href="kpi_configuration.html">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      KPI Configuration
+    </a>
+    <a class="nav-item active" href="ai_analytics.html">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      AI Analytics
+    </a>
+    <a class="nav-item" href="reports_analytics.html">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      Reports
+    </a>
+    <a class="nav-item" href="system_settings.html">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      System Settings
+    </a>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="page-header">
+      <div>
+        <h1>AI Analytics</h1>
+        <p>Predictive insights, performance clustering, bias detection, and AI-generated feedback for Q1 2026</p>
+      </div>
+      <div class="ai-status-badge"><span class="status-pulse"></span> AI Engine Online</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="sc-row"><span class="sc-label">Predictions Generated</span>
+          <div class="sc-icon ic-blue2"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+        </div>
+        <div class="sc-value">8</div><div class="sc-sub">Across all departments</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-row"><span class="sc-label">Bias Alerts</span>
+          <div class="sc-icon ic-red"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+        </div>
+        <div class="sc-value">2</div><div class="sc-sub amber">Require review</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-row"><span class="sc-label">AI Feedback Generated</span>
+          <div class="sc-icon ic-purple"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        </div>
+        <div class="sc-value">8</div><div class="sc-sub">All employees · Q1 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-row"><span class="sc-label">Avg Model Confidence</span>
+          <div class="sc-icon ic-green"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        </div>
+        <div class="sc-value">89%</div><div class="sc-sub">Across 8 predictions</div>
+      </div>
+    </div>
+
+    <div class="ai-banner">
+      <div class="ai-banner-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <div class="ai-banner-text">
+        <strong>Explainable AI:</strong> every prediction, alert, and suggestion below includes a
+        <span class="why-btn" style="display:inline-flex;pointer-events:none;padding:2px 9px;font-size:11px;vertical-align:middle">Why?</span>
+        panel describing the underlying data and reasoning — in line with the system's transparency requirements.
+      </div>
+    </div>
+
+    <div class="ai-tabs" id="mainTabs">
+      <button class="ai-tab active" data-tab="prediction">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        Performance Prediction
+      </button>
+      <button class="ai-tab" data-tab="clustering">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+        Employee Clustering
+      </button>
+      <button class="ai-tab" data-tab="bias">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        Bias Detection
+      </button>
+      <button class="ai-tab" data-tab="feedback">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        AI Feedback
+      </button>
+      <button class="ai-tab" data-tab="optimization">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        KPI Optimization
+      </button>
+    </div>
+
+    <!-- PANEL: PREDICTION -->
+    <div class="tab-panel active" id="panel-prediction">
+      <div class="panel-card">
+        <div class="panel-card-header">
+          <div>
+            <h2>Performance Prediction</h2>
+            <p>Forecasted Q2 2026 scores based on 3 quarters of historical KPI trends, generated with a Scikit-learn Linear Regression model.</p>
+          </div>
+          <button class="btn-run" id="runPredBtn" onclick="runPrediction()">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Run New Prediction
+          </button>
+        </div>
+        <div class="chart-wrap-lg">
+          <canvas id="predictionChart"></canvas>
+          <div class="loading-overlay" id="predLoading"><div class="spinner"></div><span>Running regression model on 8 employees…</span></div>
+        </div>
+      </div>
+      <div class="panel-card">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Employee</th><th>Department</th><th>Current (Q1)</th><th>Predicted (Q2)</th><th>Trend</th><th>Confidence</th><th></th></tr></thead>
+            <tbody id="predictionBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: CLUSTERING -->
+    <div class="tab-panel" id="panel-clustering">
+      <div class="cluster-grid" id="clusterGrid"></div>
+      <div class="panel-card">
+        <div class="panel-card-header">
+          <div>
+            <h2>Cluster Map — Quality vs. Delivery Score</h2>
+            <p>Each point represents one employee, plotted by Quality Score and Delivery Score (both 0–100%, averaged across completed KPIs).</p>
+          </div>
+        </div>
+        <div class="chart-wrap-lg" style="height:300px"><canvas id="clusterChart"></canvas></div>
+        <div style="margin-top:14px">
+          <button class="why-btn" onclick="toggleWhy(this)">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            How are these clusters generated?
+            <svg class="chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="why-panel">
+            <div class="why-panel-inner">
+              Clusters are generated using <strong>K-Means (k=3)</strong> on two standardized dimensions — Quality Score and Delivery Score —
+              averaged across all of an employee's completed KPIs this cycle. Current cluster centroids:
+              <strong>High Performers</strong> (≈94% / ≈92%), <strong>Steady Performers</strong> (≈82% / ≈79%),
+              <strong>Needs Improvement</strong> (≈67% / ≈72%). Employees are grouped by nearest centroid rather than a single
+              overall score, so one weak KPI doesn't dominate the grouping.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: BIAS -->
+    <div class="tab-panel" id="panel-bias">
+      <div id="biasAlerts"></div>
+      <div class="panel-card">
+        <div class="panel-card-header">
+          <div>
+            <h2>Average Manager Score</h2>
+            <p>Average "Manager Evaluation" score (out of 20) given by each evaluator this cycle, compared against the organization-wide average.</p>
+          </div>
+        </div>
+        <div class="chart-wrap-lg" style="height:220px"><canvas id="biasChart"></canvas></div>
+        <div style="margin-top:10px;font-size:12px;color:var(--txt-faint);font-weight:600">
+          Organization average: 15.5 / 20 (77.5%) &nbsp;·&nbsp; Flag threshold: ± 2.0 points
+        </div>
+      </div>
+      <div class="panel-card">
+        <div class="panel-card-header">
+          <div><h2>Flagged Evaluations</h2><p>Individual evaluations contributing to the bias alerts above.</p></div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Employee</th><th>Manager</th><th>Score Given</th><th>Dept. Average</th><th>Deviation</th><th>Status</th></tr></thead>
+            <tbody id="flaggedBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: FEEDBACK -->
+    <div class="tab-panel" id="panel-feedback">
+      <div class="panel-card">
+        <div class="panel-card-header" style="margin-bottom:0">
+          <div>
+            <h2>AI-Generated Feedback</h2>
+            <p>Personalized performance summaries generated from Q1 2026 evaluation data and KPI scores via the OpenAI API (gpt-4o).</p>
+          </div>
+          <button class="btn-run" onclick="generateAllFeedback()">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            Generate All
+          </button>
+        </div>
+      </div>
+      <div class="feedback-grid" id="feedbackGrid"></div>
+    </div>
+
+    <!-- PANEL: OPTIMIZATION -->
+    <div class="tab-panel" id="panel-optimization">
+      <div class="opt-summary">
+        <div class="opt-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div>
+          <strong>KPI Optimization:</strong> the AI engine analyzed correlations between individual KPI scores and final performance
+          outcomes across Q1 2026 (8 evaluations, 25 KPIs). The suggestions below rebalance department weights without changing the
+          100% total — each department's net change is 0%.
+        </div>
+      </div>
+      <div class="ai-tabs sub" id="optTabs"></div>
+      <div class="opt-grid" id="optGrid"></div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-ctr" id="toastCtr"></div>
+
+<script src="ai_analytics.js"></script>
+</body>
+</html>

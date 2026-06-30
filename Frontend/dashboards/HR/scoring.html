@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scoring · EvaluAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scoring.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <span class="brand-mark">AI</span>
+        <span class="brand-name">EvaluAI</span>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li>
+          <button class="nav-item" data-module="overview" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+            <span>Overview</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="employees" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Employees</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="manage-employees" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <span>Manage Employees</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item is-active" data-module="scoring" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Scoring</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="reports" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span>Reports</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="announcements" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.2-3"/></svg>
+            <span>Announcements</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-module="surveys" type="button">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Surveys</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>EvaluAI · v1.0</span>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="topbar-title">Scoring</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="popover-wrap">
+          <button class="icon-btn" id="notifBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge" id="notifBadge">8</span>
+          </button>
+          <div class="popover" id="notifPopover">
+            <div class="popover-header">
+              <span>Notifications</span>
+              <button class="text-btn" id="markAllRead">Mark all read</button>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        </div>
+
+        <span class="topbar-divider"></span>
+
+        <div class="popover-wrap">
+          <button class="user-menu-btn" id="userBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar">JR</span>
+            <span class="user-name">James Rodriguez</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="popover popover-right" id="userPopover">
+            <button class="popover-item" type="button">Profile settings</button>
+            <button class="popover-item" type="button">Account &amp; security</button>
+            <hr class="popover-sep" />
+            <button class="popover-item is-danger" type="button">Log out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="toast" id="toast"></div>
+
+    <main class="content">
+
+      <section class="page-heading page-heading--row">
+        <div>
+          <h2>Scoring</h2>
+          <p>Conduct quarterly KPI evaluations and track scoring progress across your team</p>
+        </div>
+        <div class="cycle-field">
+          <label for="cycleSelect">Evaluation cycle</label>
+          <select id="cycleSelect">
+            <option value="Q1 2026">Q1 2026</option>
+            <option value="Q4 2025">Q4 2025 (read-only)</option>
+            <option value="Q3 2025">Q3 2025 (read-only)</option>
+          </select>
+        </div>
+      </section>
+
+      <div class="scoring-layout">
+
+        <!-- ===== Team list ===== -->
+        <aside class="team-panel">
+          <div class="team-panel-head">
+            <h3>Team Members</h3>
+            <span class="team-count" id="teamCount">5</span>
+          </div>
+
+          <div class="search-field team-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="teamSearch" placeholder="Search team members..." aria-label="Search team members" />
+          </div>
+
+          <ul class="team-list" id="teamList"></ul>
+        </aside>
+
+        <!-- ===== Scoring panel ===== -->
+        <section class="score-panel" id="scorePanel">
+
+          <div class="empty-panel" id="emptyPanel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <p>Select a team member to begin scoring</p>
+          </div>
+
+          <div class="score-form" id="scoreForm" hidden>
+
+            <div class="score-header">
+              <span class="emp-avatar emp-avatar--lg" id="empAvatar"></span>
+              <div class="score-header-info">
+                <h3 id="empName"></h3>
+                <p id="empMeta"></p>
+              </div>
+              <span class="badge-pill status-pill" id="statusPill"></span>
+            </div>
+
+            <div class="score-summary">
+              <div class="gauge" id="gauge">
+                <div class="gauge-value">
+                  <strong id="gaugeTotal">0</strong>
+                  <span>/ 25</span>
+                </div>
+              </div>
+              <div class="summary-breakdown">
+                <div class="summary-row">
+                  <span>Manager Evaluation</span>
+                  <strong id="managerSubtotal">0 / 20</strong>
+                </div>
+                <div class="summary-row">
+                  <span>HR Evaluation</span>
+                  <strong id="hrSubtotal">0 / 5</strong>
+                </div>
+                <div class="summary-row summary-row--total">
+                  <span>Total Score</span>
+                  <strong id="totalScore">0 / 25</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="kpi-section">
+              <div class="kpi-section-head">
+                <h4>Section A · Manager Evaluation</h4>
+                <span class="kpi-section-max">20 Marks</span>
+              </div>
+              <p class="kpi-section-sub" id="deptKpiNote"></p>
+              <div id="managerKpiList" class="kpi-list"></div>
+            </div>
+
+            <div class="kpi-section">
+              <div class="kpi-section-head">
+                <h4>Section B · HR Evaluation</h4>
+                <span class="kpi-section-max">5 Marks</span>
+              </div>
+              <p class="kpi-section-sub">Professional behavior, attendance, and organizational contribution</p>
+              <div id="hrKpiList" class="kpi-list"></div>
+            </div>
+
+            <div class="field comments-field">
+              <label for="evalComments">Evaluation comments</label>
+              <textarea id="evalComments" rows="4" placeholder="Add notes on strengths, areas for improvement, or context for this score..."></textarea>
+              <span class="field-error" id="errorComments"></span>
+            </div>
+
+            <div class="score-actions">
+              <button type="button" class="btn btn--ghost" id="saveDraftBtn">Save Draft</button>
+              <button type="button" class="btn btn--primary" id="submitEvalBtn">Submit Evaluation</button>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="scoring.js"></script>
+</body>
+</html>

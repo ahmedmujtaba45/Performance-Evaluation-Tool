@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvaluAI – Performance History</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared styles (sidebar, header, variables) -->
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="performance-history.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SIDEBAR  (identical structure across all modules)
+  ============================================================ -->
+  <aside class="sidebar">
+
+    <!-- Logo -->
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2a3 3 0 0 0-1 5.83V9H9a4 4 0 0 0-4 4v1H4a1 1 0 0 0-1 1v3a1 1 0 0 0
+                   1 1h1v.17A2.5 2.5 0 0 0 7 21h10a2.5 2.5 0 0 0 2-2.83V19h1a1 1 0 0 0
+                   1-1v-3a1 1 0 0 0-1-1h-1v-1a4 4 0 0 0-4-4h-2V7.83A3 3 0 0 0 12 2zm-1
+                   12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm5 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-9
+                   0a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+        </svg>
+      </div>
+      <span class="sb-logo-text">EvaluAI</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sb-nav">
+
+      <a class="nav-item" href="employee-dashboard.html" data-page="employee-dashboard.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3"  y="3"  width="7" height="7" rx="1"/>
+          <rect x="14" y="3"  width="7" height="7" rx="1"/>
+          <rect x="3"  y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Overview
+      </a>
+
+      <a class="nav-item active" href="performance-history.html" data-page="performance-history.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Performance History
+      </a>
+
+      <a class="nav-item" href="ai-feedback.html" data-page="ai-feedback.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/>
+        </svg>
+        AI Feedback
+      </a>
+
+      <a class="nav-item" href="announcements.html" data-page="announcements.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Announcements
+      </a>
+
+      <a class="nav-item" href="surveys.html" data-page="surveys.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+          <line x1="9" y1="12" x2="15" y2="12"/>
+          <line x1="9" y1="16" x2="13" y2="16"/>
+        </svg>
+        Surveys
+      </a>
+
+    </nav>
+
+    <div class="sb-footer">
+      <a class="nav-item" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+        Settings
+      </a>
+    </div>
+
+  </aside>
+
+
+  <!-- ============================================================
+       MAIN WRAPPER
+  ============================================================ -->
+  <div class="main-wrap">
+
+    <!-- ── TOP HEADER ─────────────────────────────────────── -->
+    <header class="header">
+      <span class="header-title">Employee Dashboard</span>
+
+      <div class="header-right">
+
+        <!-- Notification Bell -->
+        <div class="notif-wrap">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications"
+                  onclick="toggleDropdown('notifDD')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notif-badge" id="notifCount">8</span>
+          </button>
+
+          <div class="notif-dropdown" id="notifDD">
+            <div class="notif-dd-head">
+              <span class="notif-dd-title">Notifications</span>
+              <span class="notif-mark-read" onclick="markAllRead()">Mark all read</span>
+            </div>
+            <div class="notif-list">
+              <div class="notif-row"><div class="notif-dot"></div>
+                <div><div class="notif-msg">Q1 2026 evaluation is complete. Your final scores are now available.</div><div class="notif-time">2 hours ago</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div>
+                <div><div class="notif-msg">AI feedback has been generated based on your performance data.</div><div class="notif-time">5 hours ago</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div>
+                <div><div class="notif-msg">Your manager has submitted evaluation scores for Q1 2026.</div><div class="notif-time">Yesterday, 4:30 PM</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div>
+                <div><div class="notif-msg">Reminder: Sprint Velocity KPI deadline is approaching (June 30).</div><div class="notif-time">2 days ago</div></div></div>
+              <div class="notif-row"><div class="notif-dot"></div>
+                <div><div class="notif-msg">New announcement: Q2 2026 KPI targets have been published by HR.</div><div class="notif-time">3 days ago</div></div></div>
+            </div>
+          </div>
+        </div><!-- /.notif-wrap -->
+
+        <!-- User Pill -->
+        <div class="user-pill-wrap" id="userPillWrap">
+          <div class="user-pill" onclick="toggleDropdown('userDD')">
+            <div class="avatar">EC</div>
+            <span class="user-name">Emily Chen</span>
+            <span class="chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="user-dropdown" id="userDD">
+            <div class="ud-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+              My Profile
+            </div>
+            <div class="ud-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65
+                         1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65
+                         0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65
+                         1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0
+                         4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0
+                         0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51
+                         1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0
+                         19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              Account Settings
+            </div>
+            <div class="ud-sep"></div>
+            <div class="ud-row danger">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+              Sign Out
+            </div>
+          </div>
+        </div><!-- /.user-pill-wrap -->
+
+      </div><!-- /.header-right -->
+    </header>
+
+
+    <!-- ── CONTENT ────────────────────────────────────────── -->
+    <main class="content">
+
+      <!-- Page Heading -->
+      <div class="page-heading">
+        <h1 class="page-title">Performance History</h1>
+        <p class="page-sub">Review your past quarterly evaluations and track your progress over time</p>
+      </div>
+
+      <!-- ── Quarter Filter Tabs ─────────────────────────── -->
+      <div class="ph-filter-bar">
+        <button class="ph-tab active" onclick="filterQuarter(this,'all')">All Quarters</button>
+        <button class="ph-tab" onclick="filterQuarter(this,'Q1 2026')">Q1 2026</button>
+        <button class="ph-tab" onclick="filterQuarter(this,'Q4 2025')">Q4 2025</button>
+        <button class="ph-tab" onclick="filterQuarter(this,'Q3 2025')">Q3 2025</button>
+        <button class="ph-tab" onclick="filterQuarter(this,'Q2 2025')">Q2 2025</button>
+        <button class="ph-tab" onclick="filterQuarter(this,'Q1 2025')">Q1 2025</button>
+      </div>
+
+      <!-- ── Summary Stat Cards ─────────────────────────── -->
+      <div class="stat-grid">
+
+        <!-- Average Score -->
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Average Score</span>
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6"  y1="20" x2="6"  y2="14"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-avg">0.0</div>
+          <div class="stat-sub">Out of 25</div>
+          <div class="stat-delta up">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            Consistent growth
+          </div>
+        </div>
+
+        <!-- Best Quarter -->
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Best Quarter</span>
+            <div class="stat-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-best">0.0</div>
+          <div class="stat-sub">Q1 2026 · Latest</div>
+          <div class="stat-delta up">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            Personal best
+          </div>
+        </div>
+
+        <!-- Total Evaluations -->
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Evaluations</span>
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-total-evals">0</div>
+          <div class="stat-sub">All completed</div>
+          <div class="stat-delta up">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            100% completion rate
+          </div>
+        </div>
+
+        <!-- Score Improvement -->
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Score Improvement</span>
+            <div class="stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-value" style="color: var(--green);">
+            +<span id="stat-improvement">0.0</span>
+          </div>
+          <div class="stat-sub">Points since Q1 2025</div>
+          <div class="stat-delta up">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            +32% over 4 quarters
+          </div>
+        </div>
+
+      </div><!-- /.stat-grid -->
+
+
+      <!-- ── Performance Trend Chart ─────────────────────── -->
+      <div class="trend-card">
+        <div class="trend-header">
+          <span class="trend-title">Performance Trend — Q1 2025 to Q1 2026</span>
+          <div class="trend-legend">
+            <div class="t-legend-item">
+              <div class="t-legend-dot blue"></div> My Total Score
+            </div>
+            <div class="t-legend-item">
+              <div class="t-legend-line"></div> Dept. Average
+            </div>
+          </div>
+        </div>
+        <div class="trend-wrap">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+
+
+      <!-- ── Evaluation Records ──────────────────────────── -->
+      <div class="eval-section-header">
+        <span class="eval-section-title">Quarterly Evaluations</span>
+        <span class="eval-count">5 records</span>
+      </div>
+
+      <div class="eval-list">
+
+        <!-- ════════════════════════════════════════
+             Q1 2026  (open by default via JS)
+        ════════════════════════════════════════ -->
+        <div class="eval-item" data-quarter="Q1 2026">
+          <div class="eval-header" onclick="toggleEval(this)">
+            <div class="eval-dot completed"></div>
+            <div class="eval-quarter-info">
+              <div class="eval-quarter">Q1 2026</div>
+              <div class="eval-period">January – March 2026</div>
+            </div>
+            <div class="eval-status-wrap">
+              <span class="status-badge on">✓ Completed</span>
+            </div>
+            <div class="eval-score-wrap">
+              <span class="eval-score-num">20.8</span>
+              <span class="eval-score-denom"> / 25</span>
+            </div>
+            <div class="eval-chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="eval-body">
+            <div class="eval-body-inner">
+
+              <!-- Score Breakdown -->
+              <div class="eval-scores-row">
+                <div class="eval-score-tile manager">
+                  <div class="est-label">Manager Score</div>
+                  <div class="est-value">16.8</div>
+                  <div class="est-out-of">Out of 20</div>
+                </div>
+                <div class="eval-score-tile hr">
+                  <div class="est-label">HR Score</div>
+                  <div class="est-value">4.0</div>
+                  <div class="est-out-of">Out of 5</div>
+                </div>
+                <div class="eval-score-tile total">
+                  <div class="est-label">Total Score</div>
+                  <div class="est-value">20.8</div>
+                  <div class="est-out-of">Out of 25</div>
+                </div>
+              </div>
+
+              <!-- KPI Table -->
+              <div class="eval-kpi-section">
+                <div class="eval-kpi-heading">KPI Performance</div>
+                <table class="kpi-table">
+                  <thead>
+                    <tr>
+                      <th>KPI</th>
+                      <th class="center">Weight</th>
+                      <th class="center">Manager</th>
+                      <th class="center">HR</th>
+                      <th class="right">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="kpi-td-name">Code Quality &amp; Reviews</td>
+                      <td class="kpi-td-weight center">25%</td>
+                      <td class="center"><span class="kpi-score-pill">4.5</span></td>
+                      <td class="center"><span class="kpi-score-pill hr">4.0</span></td>
+                      <td class="right"><span class="status-badge below">Below Target</span></td>
+                    </tr>
+                    <tr>
+                      <td class="kpi-td-name">Sprint Velocity</td>
+                      <td class="kpi-td-weight center">20%</td>
+                      <td class="center"><span class="kpi-score-pill">4.2</span></td>
+                      <td class="center"><span class="kpi-score-pill hr">4.0</span></td>
+                      <td class="right"><span class="status-badge on">On Track</span></td>
+                    </tr>
+                    <tr>
+                      <td class="kpi-td-name">Technical Documentation</td>
+                      <td class="kpi-td-weight center">15%</td>
+                      <td class="center"><span class="kpi-score-pill">3.8</span></td>
+                      <td class="center"><span class="kpi-score-pill hr">4.0</span></td>
+                      <td class="right"><span class="status-badge on">On Track</span></td>
+                    </tr>
+                    <tr>
+                      <td class="kpi-td-name">Bug Resolution Time</td>
+                      <td class="kpi-td-weight center">20%</td>
+                      <td class="center"><span class="kpi-score-pill">4.0</span></td>
+                      <td class="center"><span class="kpi-score-pill hr">3.5</span></td>
+                      <td class="right"><span class="status-badge on">On Track</span></td>
+                    </tr>
+                    <tr>
+                      <td class="kpi-td-name">Team Collaboration</td>
+                      <td class="kpi-td-weight center">20%</td>
+                      <td class="center"><span class="kpi-score-pill">4.8</span></td>
+                      <td class="center"><span class="kpi-score-pill hr">4.5</span></td>
+                      <td class="right"><span class="status-badge exceeds">Exceeds Target</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Manager Comment -->
+              <div class="eval-comment-section">
+                <div class="eval-comment-heading">Manager's Comment</div>
+                <div class="eval-comment-box">
+                  "Emily continues to show strong performance across all evaluation areas. Her team collaboration skills are exceptional and she consistently supports junior team members. Minor improvements are recommended in code review completeness to fully meet the target threshold."
+                </div>
+              </div>
+
+              <!-- AI Insight -->
+              <div class="eval-ai-section">
+                <div class="eval-ai-box">
+                  <div class="eval-ai-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/></svg>
+                  </div>
+                  <div>
+                    <div class="eval-ai-label">AI Insight</div>
+                    <div class="eval-ai-text">A 5.1-point improvement over four quarters reflects consistent, sustained growth. Team Collaboration is a standout strength (+0.5 pts above target). To close the gap on Code Quality, targeting 95/95 peer-review completions in Q2 is recommended.</div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.eval-body-inner -->
+          </div><!-- /.eval-body -->
+        </div><!-- /.eval-item Q1 2026 -->
+
+
+        <!-- ════════════════════════════════════════
+             Q4 2025
+        ════════════════════════════════════════ -->
+        <div class="eval-item" data-quarter="Q4 2025">
+          <div class="eval-header" onclick="toggleEval(this)">
+            <div class="eval-dot completed"></div>
+            <div class="eval-quarter-info">
+              <div class="eval-quarter">Q4 2025</div>
+              <div class="eval-period">October – December 2025</div>
+            </div>
+            <div class="eval-status-wrap">
+              <span class="status-badge on">✓ Completed</span>
+            </div>
+            <div class="eval-score-wrap">
+              <span class="eval-score-num">19.6</span>
+              <span class="eval-score-denom"> / 25</span>
+            </div>
+            <div class="eval-chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="eval-body">
+            <div class="eval-body-inner">
+              <div class="eval-scores-row">
+                <div class="eval-score-tile manager"><div class="est-label">Manager Score</div><div class="est-value">15.7</div><div class="est-out-of">Out of 20</div></div>
+                <div class="eval-score-tile hr"><div class="est-label">HR Score</div><div class="est-value">3.9</div><div class="est-out-of">Out of 5</div></div>
+                <div class="eval-score-tile total"><div class="est-label">Total Score</div><div class="est-value">19.6</div><div class="est-out-of">Out of 25</div></div>
+              </div>
+              <div class="eval-kpi-section">
+                <div class="eval-kpi-heading">KPI Performance</div>
+                <table class="kpi-table">
+                  <thead><tr><th>KPI</th><th class="center">Weight</th><th class="center">Manager</th><th class="center">HR</th><th class="right">Status</th></tr></thead>
+                  <tbody>
+                    <tr><td class="kpi-td-name">Code Quality &amp; Reviews</td><td class="kpi-td-weight center">25%</td><td class="center"><span class="kpi-score-pill">4.2</span></td><td class="center"><span class="kpi-score-pill hr">3.8</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Sprint Velocity</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">4.0</span></td><td class="center"><span class="kpi-score-pill hr">3.8</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Technical Documentation</td><td class="kpi-td-weight center">15%</td><td class="center"><span class="kpi-score-pill">3.6</span></td><td class="center"><span class="kpi-score-pill hr">3.8</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Bug Resolution Time</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.9</span></td><td class="center"><span class="kpi-score-pill hr">3.5</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Team Collaboration</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">4.5</span></td><td class="center"><span class="kpi-score-pill hr">4.2</span></td><td class="right"><span class="status-badge exceeds">Exceeds Target</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="eval-comment-section">
+                <div class="eval-comment-heading">Manager's Comment</div>
+                <div class="eval-comment-box">"Good quarter overall with noticeable improvement from Q3. Recommend improving documentation completeness and code review coverage for the next cycle."</div>
+              </div>
+              <div class="eval-ai-section">
+                <div class="eval-ai-box">
+                  <div class="eval-ai-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/></svg></div>
+                  <div>
+                    <div class="eval-ai-label">AI Insight</div>
+                    <div class="eval-ai-text">Score improved by 1.1 pts from Q3 2025. Documentation remains the weakest KPI — a focused effort in Q1 2026 could push the total score above 21.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.eval-item Q4 2025 -->
+
+
+        <!-- ════════════════════════════════════════
+             Q3 2025
+        ════════════════════════════════════════ -->
+        <div class="eval-item" data-quarter="Q3 2025">
+          <div class="eval-header" onclick="toggleEval(this)">
+            <div class="eval-dot completed"></div>
+            <div class="eval-quarter-info">
+              <div class="eval-quarter">Q3 2025</div>
+              <div class="eval-period">July – September 2025</div>
+            </div>
+            <div class="eval-status-wrap"><span class="status-badge on">✓ Completed</span></div>
+            <div class="eval-score-wrap"><span class="eval-score-num">18.5</span><span class="eval-score-denom"> / 25</span></div>
+            <div class="eval-chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="eval-body">
+            <div class="eval-body-inner">
+              <div class="eval-scores-row">
+                <div class="eval-score-tile manager"><div class="est-label">Manager Score</div><div class="est-value">14.8</div><div class="est-out-of">Out of 20</div></div>
+                <div class="eval-score-tile hr"><div class="est-label">HR Score</div><div class="est-value">3.7</div><div class="est-out-of">Out of 5</div></div>
+                <div class="eval-score-tile total"><div class="est-label">Total Score</div><div class="est-value">18.5</div><div class="est-out-of">Out of 25</div></div>
+              </div>
+              <div class="eval-kpi-section">
+                <div class="eval-kpi-heading">KPI Performance</div>
+                <table class="kpi-table">
+                  <thead><tr><th>KPI</th><th class="center">Weight</th><th class="center">Manager</th><th class="center">HR</th><th class="right">Status</th></tr></thead>
+                  <tbody>
+                    <tr><td class="kpi-td-name">Code Quality &amp; Reviews</td><td class="kpi-td-weight center">25%</td><td class="center"><span class="kpi-score-pill">3.9</span></td><td class="center"><span class="kpi-score-pill hr">3.6</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Sprint Velocity</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.8</span></td><td class="center"><span class="kpi-score-pill hr">3.7</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Technical Documentation</td><td class="kpi-td-weight center">15%</td><td class="center"><span class="kpi-score-pill">3.4</span></td><td class="center"><span class="kpi-score-pill hr">3.5</span></td><td class="right"><span class="status-badge below">Below Target</span></td></tr>
+                    <tr><td class="kpi-td-name">Bug Resolution Time</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.7</span></td><td class="center"><span class="kpi-score-pill hr">3.4</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                    <tr><td class="kpi-td-name">Team Collaboration</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">4.3</span></td><td class="center"><span class="kpi-score-pill hr">4.0</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="eval-comment-section">
+                <div class="eval-comment-heading">Manager's Comment</div>
+                <div class="eval-comment-box">"Showed improvement in sprint delivery speed. Technical documentation needs more attention and structured effort to meet expected standards in the next quarter."</div>
+              </div>
+              <div class="eval-ai-section">
+                <div class="eval-ai-box">
+                  <div class="eval-ai-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/></svg></div>
+                  <div>
+                    <div class="eval-ai-label">AI Insight</div>
+                    <div class="eval-ai-text">1.3 pt improvement from Q2 2025. Technical Documentation is a recurring weak point across quarters. A targeted documentation sprint is recommended.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.eval-item Q3 2025 -->
+
+
+        <!-- ════════════════════════════════════════
+             Q2 2025
+        ════════════════════════════════════════ -->
+        <div class="eval-item" data-quarter="Q2 2025">
+          <div class="eval-header" onclick="toggleEval(this)">
+            <div class="eval-dot completed"></div>
+            <div class="eval-quarter-info">
+              <div class="eval-quarter">Q2 2025</div>
+              <div class="eval-period">April – June 2025</div>
+            </div>
+            <div class="eval-status-wrap"><span class="status-badge on">✓ Completed</span></div>
+            <div class="eval-score-wrap"><span class="eval-score-num">17.2</span><span class="eval-score-denom"> / 25</span></div>
+            <div class="eval-chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="eval-body">
+            <div class="eval-body-inner">
+              <div class="eval-scores-row">
+                <div class="eval-score-tile manager"><div class="est-label">Manager Score</div><div class="est-value">13.8</div><div class="est-out-of">Out of 20</div></div>
+                <div class="eval-score-tile hr"><div class="est-label">HR Score</div><div class="est-value">3.4</div><div class="est-out-of">Out of 5</div></div>
+                <div class="eval-score-tile total"><div class="est-label">Total Score</div><div class="est-value">17.2</div><div class="est-out-of">Out of 25</div></div>
+              </div>
+              <div class="eval-kpi-section">
+                <div class="eval-kpi-heading">KPI Performance</div>
+                <table class="kpi-table">
+                  <thead><tr><th>KPI</th><th class="center">Weight</th><th class="center">Manager</th><th class="center">HR</th><th class="right">Status</th></tr></thead>
+                  <tbody>
+                    <tr><td class="kpi-td-name">Code Quality &amp; Reviews</td><td class="kpi-td-weight center">25%</td><td class="center"><span class="kpi-score-pill">3.6</span></td><td class="center"><span class="kpi-score-pill hr">3.4</span></td><td class="right"><span class="status-badge below">Below Target</span></td></tr>
+                    <tr><td class="kpi-td-name">Sprint Velocity</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.5</span></td><td class="center"><span class="kpi-score-pill hr">3.3</span></td><td class="right"><span class="status-badge below">Below Target</span></td></tr>
+                    <tr><td class="kpi-td-name">Technical Documentation</td><td class="kpi-td-weight center">15%</td><td class="center"><span class="kpi-score-pill">3.2</span></td><td class="center"><span class="kpi-score-pill hr">3.2</span></td><td class="right"><span class="status-badge risk">At Risk</span></td></tr>
+                    <tr><td class="kpi-td-name">Bug Resolution Time</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.5</span></td><td class="center"><span class="kpi-score-pill hr">3.2</span></td><td class="right"><span class="status-badge below">Below Target</span></td></tr>
+                    <tr><td class="kpi-td-name">Team Collaboration</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">4.0</span></td><td class="center"><span class="kpi-score-pill hr">3.8</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="eval-comment-section">
+                <div class="eval-comment-heading">Manager's Comment</div>
+                <div class="eval-comment-box">"Adequate performance. Focused effort is needed on core technical KPIs — especially sprint delivery and bug resolution — to reach department benchmarks."</div>
+              </div>
+              <div class="eval-ai-section">
+                <div class="eval-ai-box">
+                  <div class="eval-ai-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/></svg></div>
+                  <div>
+                    <div class="eval-ai-label">AI Insight</div>
+                    <div class="eval-ai-text">1.5 pt gain from Q1 2025. Team Collaboration consistently leads all KPIs. Technical Documentation at risk — if unaddressed, it may bottleneck future score growth.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.eval-item Q2 2025 -->
+
+
+        <!-- ════════════════════════════════════════
+             Q1 2025
+        ════════════════════════════════════════ -->
+        <div class="eval-item" data-quarter="Q1 2025">
+          <div class="eval-header" onclick="toggleEval(this)">
+            <div class="eval-dot completed"></div>
+            <div class="eval-quarter-info">
+              <div class="eval-quarter">Q1 2025</div>
+              <div class="eval-period">January – March 2025</div>
+            </div>
+            <div class="eval-status-wrap"><span class="status-badge on">✓ Completed</span></div>
+            <div class="eval-score-wrap"><span class="eval-score-num">15.7</span><span class="eval-score-denom"> / 25</span></div>
+            <div class="eval-chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="eval-body">
+            <div class="eval-body-inner">
+              <div class="eval-scores-row">
+                <div class="eval-score-tile manager"><div class="est-label">Manager Score</div><div class="est-value">12.5</div><div class="est-out-of">Out of 20</div></div>
+                <div class="eval-score-tile hr"><div class="est-label">HR Score</div><div class="est-value">3.2</div><div class="est-out-of">Out of 5</div></div>
+                <div class="eval-score-tile total"><div class="est-label">Total Score</div><div class="est-value">15.7</div><div class="est-out-of">Out of 25</div></div>
+              </div>
+              <div class="eval-kpi-section">
+                <div class="eval-kpi-heading">KPI Performance</div>
+                <table class="kpi-table">
+                  <thead><tr><th>KPI</th><th class="center">Weight</th><th class="center">Manager</th><th class="center">HR</th><th class="right">Status</th></tr></thead>
+                  <tbody>
+                    <tr><td class="kpi-td-name">Code Quality &amp; Reviews</td><td class="kpi-td-weight center">25%</td><td class="center"><span class="kpi-score-pill">3.2</span></td><td class="center"><span class="kpi-score-pill hr">3.0</span></td><td class="right"><span class="status-badge below">Below Target</span></td></tr>
+                    <tr><td class="kpi-td-name">Sprint Velocity</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.1</span></td><td class="center"><span class="kpi-score-pill hr">3.0</span></td><td class="right"><span class="status-badge risk">At Risk</span></td></tr>
+                    <tr><td class="kpi-td-name">Technical Documentation</td><td class="kpi-td-weight center">15%</td><td class="center"><span class="kpi-score-pill">2.9</span></td><td class="center"><span class="kpi-score-pill hr">3.0</span></td><td class="right"><span class="status-badge risk">At Risk</span></td></tr>
+                    <tr><td class="kpi-td-name">Bug Resolution Time</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.3</span></td><td class="center"><span class="kpi-score-pill hr">3.1</span></td><td class="right"><span class="status-badge below">Below Target</span></td></tr>
+                    <tr><td class="kpi-td-name">Team Collaboration</td><td class="kpi-td-weight center">20%</td><td class="center"><span class="kpi-score-pill">3.8</span></td><td class="center"><span class="kpi-score-pill hr">3.5</span></td><td class="right"><span class="status-badge on">On Track</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="eval-comment-section">
+                <div class="eval-comment-heading">Manager's Comment</div>
+                <div class="eval-comment-box">"First evaluation quarter. Shows strong potential with room for significant improvement across all technical KPIs. Team collaboration is already a strength to build on."</div>
+              </div>
+              <div class="eval-ai-section">
+                <div class="eval-ai-box">
+                  <div class="eval-ai-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/></svg></div>
+                  <div>
+                    <div class="eval-ai-label">AI Insight</div>
+                    <div class="eval-ai-text">Baseline evaluation. Two KPIs (Sprint Velocity, Technical Documentation) are at risk. Prioritising these in Q2 2025 will have the greatest impact on overall score trajectory.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.eval-item Q1 2025 -->
+
+      </div><!-- /.eval-list -->
+
+      <!-- Empty state (shown when filter matches nothing) -->
+      <div class="eval-empty" id="evalEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p>No evaluations found for this quarter.</p>
+      </div>
+
+    </main><!-- /.content -->
+  </div><!-- /.main-wrap -->
+
+  <!-- Chart.js (must load before performance-history.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <!-- Page Scripts -->
+  <script src="performance-history.js"></script>
+
+</body>
+</html>
